@@ -1,0 +1,17 @@
+{
+  "name": "celsius",
+  "displayName": "celsius",
+  "expo": {
+    "name": "celsius",
+    "slug": "celsius",
+    "version": "1.0.0",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
