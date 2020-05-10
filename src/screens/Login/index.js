@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { View, StatusBar, Text } from 'react-native'
 import LoginScreen from 'react-native-login-screen'
 
 const Login = () => {
@@ -8,13 +7,11 @@ const Login = () => {
 
 	return (
 		<LoginScreen
-			spinnerEnable
 			logoText='CelsiusPro'
 			loginButtonBackgroundColor='#282828'
 			source={require('../../img/wheat3.jpeg')}
 			switchValue={switchValue}
 			onPressLogin={() => alert('Login Button is pressed')}
-			onPressSettings={() => alert('Settings Button is pressed')}
 			usernameOnChangeText={(username) => setUsername(username)}
 			passwordOnChangeText={(password) => console.log('Password: ', password)}
 			onSwitchValueChange={(switchValue) => {
