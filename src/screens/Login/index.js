@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import LoginScreen from 'react-native-login-screen'
 
-const Login = () => {
+const Login = ({ navigation }) => {
 	const [username, setUsername] = useState(null)
 	const [switchValue, setSwitchValue] = useState(false)
 
@@ -11,7 +11,7 @@ const Login = () => {
 			loginButtonBackgroundColor='#282828'
 			source={require('../../img/wheat3.jpeg')}
 			switchValue={switchValue}
-			onPressLogin={() => alert('Login Button is pressed')}
+			onPressLogin={() => navigation.navigate('Quote')}
 			usernameOnChangeText={(username) => setUsername(username)}
 			passwordOnChangeText={(password) => console.log('Password: ', password)}
 			onSwitchValueChange={(switchValue) => {
