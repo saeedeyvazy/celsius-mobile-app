@@ -16,6 +16,7 @@ export function QuoteTab() {
 			tabBarOptions={{
 				style: {
 					backgroundColor: 'white',
+					padding: 0,
 				},
 				labelStyle: { fontSize: 10 },
 				showIcon: true,
