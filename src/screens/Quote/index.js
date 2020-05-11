@@ -4,7 +4,6 @@ import {
 	Content,
 	Icon,
 	Picker,
-	View,
 	Form,
 	Text,
 	Button,
@@ -12,10 +11,14 @@ import {
 import CelsiusHeader from '../../components/common/CelsiusHeader'
 import PickerContainer from '../../components/common/PickerContainer'
 import CelsiusInput from '../../components/common/CelsiusInput'
-const Quote = () => {
+import ViewQuoteScreen from '../../screens/ViewQuote'
+
+const Quote = ({ navigation }) => {
 	const [selected, setSelected] = useState('key0')
 	const [selectedCrop, setSelectedCrop] = useState('key0')
 	const [selectedSeason, setSelectedSeason] = useState('key0')
+	const [isModalVisible, setIsModalVisible] = useState(false)
+
 	return (
 		<Container>
 			<CelsiusHeader></CelsiusHeader>
@@ -75,9 +78,19 @@ const Quote = () => {
 							<Picker.Item label='Fall' value='key3' />
 						</Picker>
 					</PickerContainer>
-					<Button dark full style={{ marginTop: 15 }}>
+					<Button
+						dark
+						full
+						style={{ marginTop: 15 }}
+						onPress={() => setIsModalVisible(true)}
+					>
 						<Text>Calculate Premium</Text>
 					</Button>
+					<ViewQuoteScreen
+						isVisible={isModalVisible}
+						closeModal={() => setIsModalVisible(false)}
+						navigation={navigation}
+					></ViewQuoteScreen>
 				</Form>
 			</Content>
 		</Container>
