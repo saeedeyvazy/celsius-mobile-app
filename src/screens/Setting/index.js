@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
 	Text,
 	Container,
@@ -7,13 +7,15 @@ import {
 	ListItem,
 	Left,
 	Button,
-	Right,
 	Body,
 	Icon,
 } from 'native-base'
 import CelsiusHeader from '../../components/common/CelsiusHeader'
+import SyncServerModal from './SyncServerModal'
 
 const Setting = () => {
+	const [isVisibleModal, setIsVisibleModal] = useState(false)
+
 	return (
 		<Container>
 			<CelsiusHeader></CelsiusHeader>
@@ -27,7 +29,7 @@ const Setting = () => {
 						</Button>
 					</Body>
 				</ListItem>
-				<Button iconRight block dark>
+				<Button iconRight block dark onPress={() => setIsVisibleModal(true)}>
 					<Text uppercase={false}>Sync with server</Text>
 					<Icon type='MaterialCommunityIcons' name='sync'></Icon>
 				</Button>
@@ -60,6 +62,10 @@ const Setting = () => {
 					</ListItem>
 				</List>
 			</Content>
+			<SyncServerModal
+				isVisible={isVisibleModal}
+				close={() => setIsVisibleModal(false)}
+			></SyncServerModal>
 		</Container>
 	)
 }
