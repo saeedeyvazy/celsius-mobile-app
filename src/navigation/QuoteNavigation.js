@@ -4,7 +4,7 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 import ClientScreen from '../screens/Client'
 import QuoteScreen from '../screens/Quote'
 import SettingScreen from '../screens/Setting'
-import CoopScreen from '../screens/Coop'
+import CoopScreen from '../screens/Cooperative'
 import Icon from 'react-native-dynamic-vector-icons'
 
 const Tab = createMaterialTopTabNavigator()

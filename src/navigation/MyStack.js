@@ -5,6 +5,9 @@ import Login from '../screens/Login'
 import { QuoteTab } from './QuoteNavigation'
 import ViewQuote from '../screens/ViewQuote'
 import BuyingScreen from '../screens/Buying'
+import AddViewClientScreen from '../screens/Client/AddViewClient'
+import AddViewCoopScreen from '../screens/Cooperative/AddCooperative'
+import CoopScreen from '../screens/Cooperative'
 
 const Stack = createStackNavigator()
 
@@ -16,6 +19,12 @@ export function MyStack() {
 				<Stack.Screen name='Quote' component={QuoteTab} />
 				<Stack.Screen name='ViewQuote' component={ViewQuote} />
 				<Stack.Screen name='BuyingScreen' component={BuyingScreen} />
+				<Stack.Screen name='CoopScreen' component={CoopScreen} />
+				<Stack.Screen
+					name='AddViewClientScreen'
+					component={AddViewClientScreen}
+				/>
+				<Stack.Screen name='AddViewCoopScreen' component={AddViewCoopScreen} />
 			</Stack.Navigator>
 		</NavigationContainer>
 	)

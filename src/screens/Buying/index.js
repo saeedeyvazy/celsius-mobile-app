@@ -14,8 +14,18 @@ import {
 import CelsiusHeader from '../../components/common/CelsiusHeader'
 import CelsiusInput from '../../components/common/CelsiusInput'
 import PickerContainer from '../../components/common/PickerContainer'
+import { Alert } from 'react-native'
 
 const Buying = () => {
+	const confirm = () => {
+		Alert.alert(
+			'Confirmation/Payment Details',
+			'Confirmed!',
+			[{ text: 'OK', onPress: () => console.log('OK Pressed') }],
+			{ cancelable: false }
+		)
+	}
+
 	return (
 		<Container>
 			<CelsiusHeader></CelsiusHeader>
@@ -60,7 +70,7 @@ const Buying = () => {
 						<Text>Cancel</Text>
 					</Button>
 
-					<Button dark rounded>
+					<Button dark rounded onPress={() => confirm()}>
 						<Text>Confirm</Text>
 					</Button>
 				</View>

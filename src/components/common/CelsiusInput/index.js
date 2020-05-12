@@ -1,5 +1,5 @@
 import React from 'react'
-import { Item, Label, Input } from 'native-base'
+import { Item, Input } from 'native-base'
 
 const CelsiusInput = ({ label }) => {
 	return (
