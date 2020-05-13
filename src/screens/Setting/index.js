@@ -13,7 +13,7 @@ import {
 import CelsiusHeader from '../../components/common/CelsiusHeader'
 import SyncServerModal from './SyncServerModal'
 
-const Setting = () => {
+const Setting = ({ navigation }) => {
 	const [isVisibleModal, setIsVisibleModal] = useState(false)
 
 	return (
@@ -23,7 +23,13 @@ const Setting = () => {
 				<ListItem>
 					<Left></Left>
 					<Body>
-						<Button bordered iconRight full danger>
+						<Button
+							bordered
+							iconRight
+							full
+							danger
+							onPress={() => navigation.navigate('Login')}
+						>
 							<Text uppercase={false}>Logout</Text>
 							<Icon type='AntDesign' name='logout'></Icon>
 						</Button>

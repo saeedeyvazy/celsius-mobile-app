@@ -64,7 +64,7 @@ const Client = ({ navigation }) => {
 						</Body>
 						<Right>
 							<Text note>registered</Text>
-							<Button transparent>
+							<Button transparent onPress={() => navigateToViewClient()}>
 								<Text>View</Text>
 							</Button>
 						</Right>
@@ -81,7 +81,7 @@ const Client = ({ navigation }) => {
 						</Body>
 						<Right>
 							<Text note>confirmed</Text>
-							<Button transparent>
+							<Button transparent onPress={() => navigateToViewClient()}>
 								<Text>View</Text>
 							</Button>
 						</Right>
@@ -98,7 +98,7 @@ const Client = ({ navigation }) => {
 						</Body>
 						<Right>
 							<Text note>unknown</Text>
-							<Button transparent>
+							<Button transparent onPress={() => navigateToViewClient()}>
 								<Text>View</Text>
 							</Button>
 						</Right>
@@ -115,7 +115,7 @@ const Client = ({ navigation }) => {
 						</Body>
 						<Right>
 							<Text note>confirmed</Text>
-							<Button transparent>
+							<Button transparent onPress={() => navigateToViewClient()}>
 								<Text>View</Text>
 							</Button>
 						</Right>
@@ -132,7 +132,7 @@ const Client = ({ navigation }) => {
 						</Body>
 						<Right>
 							<Text note>unknown</Text>
-							<Button transparent>
+							<Button transparent onPress={() => navigateToViewClient()}>
 								<Text>View</Text>
 							</Button>
 						</Right>

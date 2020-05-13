@@ -16,12 +16,12 @@ import CelsiusInput from '../../components/common/CelsiusInput'
 import PickerContainer from '../../components/common/PickerContainer'
 import { Alert } from 'react-native'
 
-const Buying = () => {
+const Buying = ({ navigation }) => {
 	const confirm = () => {
 		Alert.alert(
 			'Confirmation/Payment Details',
 			'Confirmed!',
-			[{ text: 'OK', onPress: () => console.log('OK Pressed') }],
+			[{ text: 'OK', onPress: () => navigation.navigate('Client') }],
 			{ cancelable: false }
 		)
 	}

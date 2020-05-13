@@ -7,6 +7,8 @@ const Login = ({ navigation }) => {
 
 	return (
 		<LoginScreen
+			disableSettings
+			switchTextStyle={{ color: 'black' }}
 			logoText='CelsiusPro'
 			loginButtonBackgroundColor='#282828'
 			source={require('../../img/wheat3.jpeg')}

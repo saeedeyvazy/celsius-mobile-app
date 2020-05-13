@@ -76,7 +76,13 @@ const AddCooperative = ({ navigation }) => {
 						<Text>Memebers</Text>
 					</ListItem>
 					<Left></Left>
-					<Button iconRight bordered dark block>
+					<Button
+						iconRight
+						bordered
+						dark
+						block
+						onPress={() => navigation.navigate('Client')}
+					>
 						<Text>Add User</Text>
 						<Icon name='adduser' type='AntDesign'></Icon>
 					</Button>
