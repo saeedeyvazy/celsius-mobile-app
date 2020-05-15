@@ -1,10 +1,16 @@
 import React from 'react'
-import { Item, Input } from 'native-base'
+import { Item, Input, Label } from 'native-base'
 
-const CelsiusInput = ({ label }) => {
+const CelsiusInput = ({
+	label,
+	keyboardType,
+	value,
+	editable,
+	onChangeText,
+}) => {
 	return (
 		<Item
-			floatingLabel
+			inlineLabel
 			placeholder
 			style={{
 				width: 300,
@@ -18,7 +24,14 @@ const CelsiusInput = ({ label }) => {
 				fontSize: 10,
 			}}
 		>
-			<Input style={{ fontSize: 15 }} placeholder={label} />
+			<Label>{label}</Label>
+			<Input
+				keyboardType={keyboardType}
+				style={{ fontSize: 15 }}
+				value={value}
+				editable={editable}
+				onChangeText={(value) => onChangeText(value)}
+			/>
 		</Item>
 	)
 }

@@ -11,13 +11,15 @@ import {
 import CelsiusHeader from '../../components/common/CelsiusHeader'
 import PickerContainer from '../../components/common/PickerContainer'
 import CelsiusInput from '../../components/common/CelsiusInput'
-import ViewQuoteScreen from '../../screens/ViewQuote'
+import ViewCalculatePremium from '../../screens/ViewQuote'
 
 const Quote = ({ navigation }) => {
-	const [selected, setSelected] = useState('key0')
+	const [selectedProvince, setSelectedProvince] = useState('key0')
 	const [selectedCrop, setSelectedCrop] = useState('key0')
 	const [selectedSeason, setSelectedSeason] = useState('key0')
 	const [isModalVisible, setIsModalVisible] = useState(false)
+	const avgYield = '4200'
+	const [insuranceArea, setInsuranceArea] = useState('')
 
 	return (
 		<Container>
@@ -33,16 +35,16 @@ const Quote = ({ navigation }) => {
 							mode='dropdown'
 							iosIcon={<Icon name='arrow-down' />}
 							style={{ width: undefined }}
-							selectedValue={selected}
-							onValueChange={(value) => setSelected(value)}
+							selectedValue={selectedProvince}
+							onValueChange={(value) => setSelectedProvince(value)}
 						>
 							<Picker.Item label='Name of province' value='key0' />
-							<Picker.Item label='Zurich' value='key1' />
-							<Picker.Item label='Bern' value='key2' />
-							<Picker.Item label='Uri' value='key3' />
-							<Picker.Item label='Schwyz' value='key4' />
-							<Picker.Item label='Unterwalden' value='key5' />
-							<Picker.Item label='Glarus' value='key6' />
+							<Picker.Item label='Zurich' value='Zurich' />
+							<Picker.Item label='Bern' value='Bern' />
+							<Picker.Item label='Uri' value='Uri' />
+							<Picker.Item label='Schwyz' value='Schwyz' />
+							<Picker.Item label='Unterwalden' value='Unterwalden' />
+							<Picker.Item label='Glarus' value='Glarus' />
 						</Picker>
 					</PickerContainer>
 					<PickerContainer>
@@ -51,7 +53,9 @@ const Quote = ({ navigation }) => {
 							iosIcon={<Icon name='arrow-down' />}
 							style={{ width: undefined }}
 							selectedValue={selectedCrop}
-							onValueChange={(value) => setSelectedCrop(value)}
+							onValueChange={(value) => {
+								setSelectedCrop(value)
+							}}
 						>
 							<Picker.Item label='Crop' value='key0' />
 							<Picker.Item label='Crop1' value='key1' />
@@ -59,10 +63,6 @@ const Quote = ({ navigation }) => {
 							<Picker.Item label='Crop3' value='key3' />
 						</Picker>
 					</PickerContainer>
-					<CelsiusInput label='Insurance area(ha)'></CelsiusInput>
-					<CelsiusInput label='Average yield(kg/ha)'></CelsiusInput>
-					<CelsiusInput label='Sum Insured(2MW)'></CelsiusInput>
-					<CelsiusInput label='Deductible'></CelsiusInput>
 					<PickerContainer>
 						<Picker
 							mode='dropdown'
@@ -72,25 +72,61 @@ const Quote = ({ navigation }) => {
 							onValueChange={(value) => setSelectedSeason(value)}
 						>
 							<Picker.Item label='Season' value='key0' />
-							<Picker.Item label='Spring' value='key1' />
-							<Picker.Item label='Winter' value='key2' />
-							<Picker.Item label='Summer' value='key3' />
-							<Picker.Item label='Fall' value='key3' />
+							<Picker.Item label='2020-2021' value='2020-2021' />
+							<Picker.Item label='2021-2022' value='2020-2022' />
+							<Picker.Item label='2022-2023' value='2020-2023' />
 						</Picker>
 					</PickerContainer>
+					<CelsiusInput
+						keyboardType='numeric'
+						label='Insurance area(ha)'
+						onChangeText={(value) => setInsuranceArea(value)}
+						value={insuranceArea}
+					></CelsiusInput>
+					<CelsiusInput
+						value={avgYield}
+						label='Average yield(kg/ha)'
+						keyboardType='numeric'
+						editable={false}
+						value={avgYield}
+					></CelsiusInput>
+					<CelsiusInput
+						value={(insuranceArea * avgYield).toString()}
+						label='Sum Insured(2MW)'
+						keyboardType='numeric'
+						editable={false}
+					></CelsiusInput>
+					<CelsiusInput
+						label='Deductible'
+						editable={false}
+						value={(insuranceArea * avgYield * 0.1).toString()}
+					></CelsiusInput>
+
 					<Button
 						dark
 						full
 						style={{ marginTop: 15 }}
 						onPress={() => setIsModalVisible(true)}
+						disabled={
+							selectedCrop == 'key0' ||
+							selectedSeason == 'key0' ||
+							selectedProvince == 'key0' ||
+							insuranceArea.toString().trim() == ''
+						}
 					>
 						<Text>Calculate Premium</Text>
 					</Button>
-					<ViewQuoteScreen
+					<ViewCalculatePremium
 						isVisible={isModalVisible}
 						closeModal={() => setIsModalVisible(false)}
 						navigation={navigation}
-					></ViewQuoteScreen>
+						premium={(insuranceArea * avgYield * 0.8).toString()}
+						sumInsured={(insuranceArea * avgYield).toString()}
+						insuranceType='AYII'
+						province={selectedProvince}
+						startDate={selectedSeason.split('-')[0] + '-06-01'}
+						endDate={selectedSeason.split('-')[1] + '-09-01'}
+					></ViewCalculatePremium>
 				</Form>
 			</Content>
 		</Container>
