@@ -24,7 +24,7 @@ const CelsiusInput = ({
 				fontSize: 10,
 			}}
 		>
-			<Label>{label}</Label>
+			<Label style={{ color: '#00008b' }}>{label}</Label>
 			<Input
 				keyboardType={keyboardType}
 				style={{ fontSize: 15 }}

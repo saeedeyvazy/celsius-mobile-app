@@ -26,7 +26,10 @@ const ViewQuote = ({
 }) => {
 	const navigateToBuyingScreen = () => {
 		closeModal()
-		navigation.navigate('BuyingScreen')
+		navigation.navigate('BuyingScreen', {
+			premiumDate: endDate,
+			premium: premium,
+		})
 	}
 
 	return (
