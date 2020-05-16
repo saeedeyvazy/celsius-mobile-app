@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
 	Text,
 	Container,
@@ -12,67 +12,115 @@ import {
 } from 'native-base'
 import CelsiusHeader from '../../components/common/CelsiusHeader'
 import SyncServerModal from './SyncServerModal'
+import Modal from 'react-native-modal'
+import LoginScreen from 'react-native-login-screen'
+import CelsiusInput from '../../components/common/CelsiusInput'
 
-const Setting = ({ navigation }) => {
+const Setting = ({ route, navigation }) => {
 	const [isVisibleModal, setIsVisibleModal] = useState(false)
-
+	const [isVisibleloginModal, setIsVisibleLoginModal] = useState(false)
+	const [isLoggedIn, setIsLoggedIn] = useState(false)
+	const [username, setUsername] = useState('')
+	const [password, setPassword] = useState('')
 	return (
-		<Container>
-			<CelsiusHeader></CelsiusHeader>
-			<Content>
-				<ListItem>
-					<Left></Left>
-					<Body>
+		<>
+			<Container>
+				<CelsiusHeader></CelsiusHeader>
+				<Content>
+					<ListItem>
+						<Left></Left>
+						<Body>
+							<Button
+								bordered
+								iconRight
+								full
+								danger
+								onPress={() => navigation.navigate('Login')}
+							>
+								<Text uppercase={false}>Logout</Text>
+								<Icon type='AntDesign' name='logout'></Icon>
+							</Button>
+						</Body>
+					</ListItem>
+					<Button
+						iconRight
+						block
+						dark
+						onPress={() => setIsVisibleLoginModal(true)}
+					>
+						<Text uppercase={false}>Sync with server</Text>
+						<Icon type='MaterialCommunityIcons' name='sync'></Icon>
+					</Button>
+					<List style={{ display: isLoggedIn ? 'flex' : 'none' }}>
+						<ListItem itemDivider>
+							<Text>Sync History</Text>
+						</ListItem>
+						<ListItem underlayColor>
+							<Text>last update 2020/07/01</Text>
+						</ListItem>
+
+						<ListItem underlayColor>
+							<Text>last update 2020/07/21</Text>
+						</ListItem>
+
+						<ListItem underlayColor>
+							<Text>last update 2020/08/11</Text>
+						</ListItem>
+
+						<ListItem underlayColor>
+							<Text>last update 2020/09/14</Text>
+						</ListItem>
+
+						<ListItem underlayColor>
+							<Text>last update 2020/11/01</Text>
+						</ListItem>
+
+						<ListItem underlayColor>
+							<Text>last update 2020/11/19</Text>
+						</ListItem>
+					</List>
+				</Content>
+				<SyncServerModal
+					isVisible={isVisibleModal}
+					close={() => setIsVisibleModal(false)}
+				></SyncServerModal>
+			</Container>
+			<Modal
+				isVisible={isVisibleloginModal}
+				animationInTiming={600}
+				animationIn='fadeInRight'
+				animationOut='fadeOutRight'
+				animationOutTiming={600}
+			>
+				<Container>
+					<CelsiusHeader></CelsiusHeader>
+					<Content>
+						<CelsiusInput
+							label='User name'
+							onChangeText={(value) => setUsername(value)}
+							value={username}
+						></CelsiusInput>
+						<CelsiusInput
+							label='Password'
+							onChangeText={(value) => setPassword(value)}
+							value={password}
+						></CelsiusInput>
 						<Button
-							bordered
-							iconRight
 							full
-							danger
-							onPress={() => navigation.navigate('Login')}
+							dark
+							style={{ marginTop: 40 }}
+							onPress={() => {
+								setIsVisibleLoginModal(false)
+								setIsLoggedIn(true)
+								setIsVisibleModal(true)
+							}}
 						>
-							<Text uppercase={false}>Logout</Text>
-							<Icon type='AntDesign' name='logout'></Icon>
+							<Text>Login</Text>
 						</Button>
-					</Body>
-				</ListItem>
-				<Button iconRight block dark onPress={() => setIsVisibleModal(true)}>
-					<Text uppercase={false}>Sync with server</Text>
-					<Icon type='MaterialCommunityIcons' name='sync'></Icon>
-				</Button>
-				<List>
-					<ListItem itemDivider>
-						<Text>Sync History</Text>
-					</ListItem>
-					<ListItem underlayColor>
-						<Text>last update 2020/07/01</Text>
-					</ListItem>
-
-					<ListItem underlayColor>
-						<Text>last update 2020/07/21</Text>
-					</ListItem>
-
-					<ListItem underlayColor>
-						<Text>last update 2020/08/11</Text>
-					</ListItem>
-
-					<ListItem underlayColor>
-						<Text>last update 2020/09/14</Text>
-					</ListItem>
-
-					<ListItem underlayColor>
-						<Text>last update 2020/11/01</Text>
-					</ListItem>
-
-					<ListItem underlayColor>
-						<Text>last update 2020/11/19</Text>
-					</ListItem>
-				</List>
-			</Content>
-			<SyncServerModal
-				isVisible={isVisibleModal}
-				close={() => setIsVisibleModal(false)}
-			></SyncServerModal>
-		</Container>
+					</Content>
+				</Container>
+			</Modal>
+		</>
 	)
 }
 

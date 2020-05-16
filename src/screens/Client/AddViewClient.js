@@ -15,7 +15,7 @@ import {
 import CelsiusHeader from '../../components/common/CelsiusHeader'
 import { Alert } from 'react-native'
 
-const AddViewClient = () => {
+const AddViewClient = ({ navigation }) => {
 	const confirm = () => {
 		Alert.alert(
 			'Client Saved',
@@ -117,11 +117,22 @@ const AddViewClient = () => {
 					<Icon type='Octicons' name='check'></Icon>
 					<Text>Save</Text>
 				</Button>
-				<Button iconLeft full warning>
+				<Button
+					iconLeft
+					full
+					warning
+					onPress={() => navigation.navigate('Client')}
+				>
 					<Icon name='trash'></Icon>
 					<Text>Cancel</Text>
 				</Button>
-				<Button rounded full iconLeft danger>
+				<Button
+					rounded
+					full
+					iconLeft
+					danger
+					onPress={() => navigation.navigate('Client')}
+				>
 					<Icon name='cross' type='Entypo'></Icon>
 					<Text>Delete</Text>
 				</Button>

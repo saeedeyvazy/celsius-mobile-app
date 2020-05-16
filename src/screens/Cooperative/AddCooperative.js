@@ -22,7 +22,7 @@ const AddCooperative = ({ navigation }) => {
 		Alert.alert(
 			'Saved changes',
 			'Confirmed!',
-			[{ text: 'OK', onPress: () => console.log('') }],
+			[{ text: 'OK', onPress: () => navigation.navigate('Coop') }],
 			{ cancelable: false }
 		)
 	}
@@ -30,12 +30,12 @@ const AddCooperative = ({ navigation }) => {
 		Alert.alert(
 			'Delete Coop',
 			'Delete Coop Successfully',
-			[{ text: 'OK', onPress: () => navigation.navigate('CoopScreen') }],
+			[{ text: 'OK', onPress: () => navigation.navigate('Coop') }],
 			{ cancelable: false }
 		)
 	}
 	const cancel = () => {
-		navigation.navigate('CoopScreen')
+		navigation.navigate('Coop')
 	}
 
 	return (
@@ -81,7 +81,7 @@ const AddCooperative = ({ navigation }) => {
 						bordered
 						dark
 						block
-						onPress={() => navigation.navigate('Client')}
+						onPress={() => navigation.navigate('AddClientScreen')}
 					>
 						<Text>Add User</Text>
 						<Icon name='adduser' type='AntDesign'></Icon>

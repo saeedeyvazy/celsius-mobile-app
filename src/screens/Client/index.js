@@ -27,7 +27,10 @@ const Client = ({ navigation }) => {
 				<Item>
 					<Icon name='ios-search' />
 					<Input placeholder='Search' />
-					<Icon name='ios-add' />
+					<Icon
+						name='ios-add'
+						onPress={() => navigation.navigate('AddClientScreen')}
+					/>
 				</Item>
 				<Button transparent>
 					<Text>Search</Text>

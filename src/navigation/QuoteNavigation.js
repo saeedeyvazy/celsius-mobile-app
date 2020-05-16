@@ -1,15 +1,20 @@
 import React from 'react'
-
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
 import ClientScreen from '../screens/Client'
 import QuoteScreen from '../screens/Quote'
 import SettingScreen from '../screens/Setting'
 import CoopScreen from '../screens/Cooperative'
 import Icon from 'react-native-dynamic-vector-icons'
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler'
+import { Text } from 'native-base'
 
 const Tab = createMaterialTopTabNavigator()
 
 export function QuoteTab() {
+	const SettingButtonCompnent = () => {
+		return <TouchableWithoutFeedback></TouchableWithoutFeedback>
+	}
+
 	return (
 		<Tab.Navigator
 			tabBarPosition='bottom'

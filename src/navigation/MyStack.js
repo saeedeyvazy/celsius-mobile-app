@@ -9,6 +9,7 @@ import AddViewClientScreen from '../screens/Client/AddViewClient'
 import AddViewCoopScreen from '../screens/Cooperative/AddCooperative'
 import CoopScreen from '../screens/Cooperative'
 import ClientScreen from '../screens/Client'
+import AddClientScreen from '../screens/Client/AddClient'
 
 const Stack = createStackNavigator()
 
@@ -27,6 +28,7 @@ export function MyStack() {
 				/>
 				<Stack.Screen name='AddViewCoopScreen' component={AddViewCoopScreen} />
 				<Stack.Screen name='ClientScreen' component={ClientScreen} />
+				<Stack.Screen name='AddClientScreen' component={AddClientScreen} />
 			</Stack.Navigator>
 		</NavigationContainer>
 	)
