@@ -13,6 +13,7 @@ const PickerContainer = ({ children }) => {
 				borderBottomWidth: 1,
 				borderRadius: 10,
 				alignSelf: 'center',
+				flexDirection: 'row',
 			}}
 		>
 			{children}
