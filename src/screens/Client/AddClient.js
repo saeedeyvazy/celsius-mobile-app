@@ -25,6 +25,7 @@ const AddClient = ({ navigation }) => {
 
 		return isFillEmail && isFillFirstName && isFillLastName && isFillProvince
 	}
+	const t = 2
 
 	const confirm = () => {
 		isFillAllRequiredField()
