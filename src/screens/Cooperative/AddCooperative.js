@@ -16,6 +16,8 @@ import {
 } from 'native-base'
 import CelsiusHeader from '../../components/common/CelsiusHeader'
 import { Alert } from 'react-native'
+import style from './styles'
+import DeleteUser from '../../components/common/DeleteUser'
 
 const AddCooperative = ({ navigation }) => {
 	const confirm = () => {
@@ -48,7 +50,7 @@ const AddCooperative = ({ navigation }) => {
 					</ListItem>
 					<ListItem first>
 						<Left>
-							<Text style={{ color: '#00008b' }}>Name</Text>
+							<Text style={style.label}>Name</Text>
 						</Left>
 						<Body>
 							<Input placeholder='Migros'></Input>
@@ -56,7 +58,7 @@ const AddCooperative = ({ navigation }) => {
 					</ListItem>
 					<ListItem>
 						<Left>
-							<Text style={{ color: '#00008b' }}>Province</Text>
+							<Text style={style.label}>Province</Text>
 						</Left>
 						<Body>
 							<Input placeholder='Migros'></Input>
@@ -64,7 +66,7 @@ const AddCooperative = ({ navigation }) => {
 					</ListItem>
 					<ListItem>
 						<Left>
-							<Text style={{ color: '#00008b' }}>Foundation Date</Text>
+							<Text style={style.label}>Foundation Date</Text>
 						</Left>
 						<Body>
 							<Input placeholder='1972/02/15'></Input>
@@ -98,13 +100,7 @@ const AddCooperative = ({ navigation }) => {
 							</Text>
 						</Body>
 						<Right>
-							<Button transparent onPress={() => navigateToViewClient()}>
-								<Icon
-									style={{ color: 'red', fontSize: 30 }}
-									type='AntDesign'
-									name='deleteuser'
-								></Icon>
-							</Button>
+							<DeleteUser></DeleteUser>
 						</Right>
 					</ListItem>
 					<ListItem thumbnail>
@@ -118,13 +114,7 @@ const AddCooperative = ({ navigation }) => {
 							</Text>
 						</Body>
 						<Right>
-							<Button transparent>
-								<Icon
-									style={{ color: 'red', fontSize: 30 }}
-									type='AntDesign'
-									name='deleteuser'
-								></Icon>
-							</Button>
+							<DeleteUser></DeleteUser>
 						</Right>
 					</ListItem>
 					<ListItem thumbnail>
@@ -138,13 +128,7 @@ const AddCooperative = ({ navigation }) => {
 							</Text>
 						</Body>
 						<Right>
-							<Button transparent>
-								<Icon
-									style={{ color: 'red', fontSize: 30 }}
-									type='AntDesign'
-									name='deleteuser'
-								></Icon>
-							</Button>
+							<DeleteUser></DeleteUser>
 						</Right>
 					</ListItem>
 				</List>

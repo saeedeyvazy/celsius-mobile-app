@@ -5,6 +5,7 @@ import CelsiusHeader from '../../components/common/CelsiusHeader'
 import CelsiusInput from '../../components/common/CelsiusInput'
 import PickerContainer from '../../components/common/PickerContainer'
 import { incrementDate } from '../../utility/Date'
+import styles from './style'
 
 const Buying = ({ navigation, route }) => {
 	const confirm = () => {
@@ -64,14 +65,7 @@ const Buying = ({ navigation, route }) => {
 						<Picker.Item label='Client 2' value='key2' />
 					</Picker>
 				</PickerContainer>
-				<View
-					style={{
-						flex: 1,
-						flexDirection: 'row',
-						justifyContent: 'space-around',
-						marginTop: 20,
-					}}
-				>
+				<View style={styles.buttonContainer}>
 					<Button danger rounded>
 						<Text>Cancel</Text>
 					</Button>
