@@ -1,21 +1,9 @@
+import { Button, Container, Content, Picker, Text, View } from 'native-base'
 import React, { useEffect, useState } from 'react'
-import {
-	Container,
-	Content,
-	Radio,
-	Picker,
-	View,
-	ListItem,
-	Left,
-	Text,
-	Right,
-	Button,
-	List,
-} from 'native-base'
+import { Alert } from 'react-native'
 import CelsiusHeader from '../../components/common/CelsiusHeader'
 import CelsiusInput from '../../components/common/CelsiusInput'
 import PickerContainer from '../../components/common/PickerContainer'
-import { Alert } from 'react-native'
 import { incrementDate } from '../../utility/Date'
 
 const Buying = ({ navigation, route }) => {
@@ -69,25 +57,6 @@ const Buying = ({ navigation, route }) => {
 						<Picker.Item label='Jahn smith' value='key3' />
 					</Picker>
 				</PickerContainer>
-				<List style={{ padding: 15 }}>
-					<ListItem>
-						<Left>
-							<Text style={{ color: '#00008b' }}>individual</Text>
-						</Left>
-						<Right>
-							<Radio selected></Radio>
-						</Right>
-					</ListItem>
-					<ListItem>
-						<Left>
-							<Text style={{ color: '#00008b' }}>Cooperative</Text>
-						</Left>
-						<Right>
-							<Radio></Radio>
-						</Right>
-					</ListItem>
-				</List>
-
 				<PickerContainer>
 					<Picker>
 						<Picker.Item label='Client' value='key0' />

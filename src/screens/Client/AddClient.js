@@ -1,17 +1,42 @@
+import {
+	Button,
+	Container,
+	Content,
+	Form,
+	Icon,
+	Picker,
+	Text,
+	View,
+	Label,
+} from 'native-base'
 import React, { useState } from 'react'
-import { Container, Content, Text, View, Button, Icon, Form } from 'native-base'
-import CelsiusHeader from '../../components/common/CelsiusHeader'
 import { Alert } from 'react-native'
+import CelsiusHeader from '../../components/common/CelsiusHeader'
 import CelsiusInput from '../../components/common/CelsiusInput'
+import PickerContainer from '../../components/common/PickerContainer'
+import { isNullOrEmpty } from '../../utility/string'
 
 const AddClient = ({ navigation }) => {
+	const isFillAllRequiredField = () => {
+		const isFillFirstName = !isNullOrEmpty(firstName)
+		const isFillLastName = !isNullOrEmpty(lastName)
+		const isFillEmail = !isNullOrEmpty(email)
+		const isFillProvince = !isNullOrEmpty(selectedProvince)
+
+		return isFillEmail && isFillFirstName && isFillLastName && isFillProvince
+	}
+
 	const confirm = () => {
-		Alert.alert(
-			'Client Saved',
-			'Confirmed!',
-			[{ text: 'OK', onPress: () => navigation.navigate('Client') }],
-			{ cancelable: false }
-		)
+		isFillAllRequiredField()
+			? Alert.alert(
+					'Client Saved',
+					'Confirmed!',
+					[{ text: 'OK', onPress: () => navigation.navigate('Client') }],
+					{ cancelable: false }
+			  )
+			: Alert.alert('Missed Information', 'Please fill all mandatory fieldds', [
+					{ text: 'OK' },
+			  ])
 	}
 	const [tradingName, setTradingName] = useState('')
 	const [Vatnumber, setVatNumber] = useState('')
@@ -19,10 +44,13 @@ const AddClient = ({ navigation }) => {
 	const [title, setTitle] = useState('')
 	const [init, setInit] = useState('')
 	const [firstName, setFirstName] = useState('')
-	const [lastName, setlastName] = useState('')
+	const [lastName, setLastName] = useState('')
 	const [occupation, setOccupation] = useState('')
 	const [birthDate, setBirthDate] = useState('')
 	const [inNo, setInNo] = useState('')
+	const [email, setEmail] = useState('')
+	const [selectedProvince, setSelectedProvince] = useState('key0')
+	const [selectedDistrict, setSelectedDistrict] = useState('key0')
 	return (
 		<Container>
 			<CelsiusHeader></CelsiusHeader>
@@ -58,15 +86,70 @@ const AddClient = ({ navigation }) => {
 						value={init}
 					></CelsiusInput>
 					<CelsiusInput
+						required
 						label='First name'
 						onChangeText={(value) => setFirstName(value)}
 						value={firstName}
 					></CelsiusInput>
 					<CelsiusInput
+						required
 						label='last name'
 						onChangeText={(value) => setLastName(value)}
 						value={lastName}
 					></CelsiusInput>
+					<CelsiusInput
+						required
+						label='Email'
+						onChangeText={(value) => setEmail(value)}
+						value={email}
+						placeholder='example@gmail.com'
+					></CelsiusInput>
+					<PickerContainer>
+						<Label style={{ fontSize: 14, marginLeft: 10, marginTop: 14 }}>
+							Province
+							<Icon name='star' style={{ fontSize: 9, color: 'red' }}></Icon>
+						</Label>
+						<Picker
+							mode='dropdown'
+							iosIcon={<Icon name='arrow-down' />}
+							style={{
+								width: undefined,
+								fontSize: 14,
+							}}
+							selectedValue={selectedProvince}
+							onValueChange={(value) => setSelectedProvince(value)}
+							placeholder='province'
+						>
+							<Picker.Item label='Zurich' value='Zurich' />
+							<Picker.Item label='Bern' value='Bern' />
+							<Picker.Item label='Uri' value='Uri' />
+							<Picker.Item label='Schwyz' value='Schwyz' />
+							<Picker.Item label='Unterwalden' value='Unterwalden' />
+							<Picker.Item label='Glarus' value='Glarus' />
+						</Picker>
+					</PickerContainer>
+					<PickerContainer>
+						<Label style={{ fontSize: 14, marginLeft: 10, marginTop: 14 }}>
+							District
+							<Icon name='star' style={{ fontSize: 9, color: 'red' }}></Icon>
+						</Label>
+						<Picker
+							mode='dropdown'
+							iosIcon={<Icon name='arrow-down' />}
+							style={{
+								width: undefined,
+								fontSize: 14,
+							}}
+							selectedValue={selectedDistrict}
+							onValueChange={(value) => setSelectedDistrict(value)}
+							placeholder='province'
+						>
+							<Picker.Item label='District 1' value='District 1' />
+							<Picker.Item label='District 2' value='District 2' />
+							<Picker.Item label='District 3' value='District 3' />
+							<Picker.Item label='District 4' value='District 4' />
+						</Picker>
+					</PickerContainer>
 					<CelsiusInput
 						label='In no.'
 						onChangeText={(value) => setInNo(value)}
