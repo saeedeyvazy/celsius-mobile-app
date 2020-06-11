@@ -25,7 +25,6 @@ const AddClient = ({ navigation }) => {
 
 		return isFillEmail && isFillFirstName && isFillLastName && isFillProvince
 	}
-	const t = 2
 
 	const confirm = () => {
 		isFillAllRequiredField()
@@ -51,6 +50,7 @@ const AddClient = ({ navigation }) => {
 	const [inNo, setInNo] = useState('')
 	const [email, setEmail] = useState('')
 	const [selectedProvince, setSelectedProvince] = useState('key0')
+	const [selectedDistrict, setSelectedDistrict] = useState('key0')
 	return (
 		<Container>
 			<CelsiusHeader></CelsiusHeader>
@@ -126,6 +126,28 @@ const AddClient = ({ navigation }) => {
 							<Picker.Item label='Schwyz' value='Schwyz' />
 							<Picker.Item label='Unterwalden' value='Unterwalden' />
 							<Picker.Item label='Glarus' value='Glarus' />
+						</Picker>
+					</PickerContainer>
+					<PickerContainer>
+						<Label style={{ fontSize: 14, marginLeft: 10, marginTop: 14 }}>
+							District
+							<Icon name='star' style={{ fontSize: 9, color: 'red' }}></Icon>
+						</Label>
+						<Picker
+							mode='dropdown'
+							iosIcon={<Icon name='arrow-down' />}
+							style={{
+								width: undefined,
+								fontSize: 14,
+							}}
+							selectedValue={selectedDistrict}
+							onValueChange={(value) => setSelectedDistrict(value)}
+							placeholder='province'
+						>
+							<Picker.Item label='District 1' value='District 1' />
+							<Picker.Item label='District 2' value='District 2' />
+							<Picker.Item label='District 3' value='District 3' />
+							<Picker.Item label='District 4' value='District 4' />
 						</Picker>
 					</PickerContainer>
 					<CelsiusInput
