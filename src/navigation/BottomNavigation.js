@@ -7,7 +7,7 @@ import CoopScreen from '../screens/Cooperative'
 import Icon from 'react-native-dynamic-vector-icons'
 const Tab = createMaterialTopTabNavigator()
 
-export function QuoteTab() {
+export function BottomNavigation() {
 	return (
 		<Tab.Navigator
 			tabBarPosition='bottom'

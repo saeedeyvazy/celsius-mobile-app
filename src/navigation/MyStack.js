@@ -2,7 +2,7 @@ import * as React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import Login from '../screens/Login'
-import { QuoteTab } from './QuoteNavigation'
+import { BottomNavigation } from './BottomNavigation'
 import ViewQuote from '../screens/ViewQuote'
 import BuyingScreen from '../screens/Buying'
 import AddViewClientScreen from '../screens/Client/AddViewClient'
@@ -18,7 +18,7 @@ export function MyStack() {
 		<NavigationContainer>
 			<Stack.Navigator headerMode='none'>
 				<Stack.Screen name='Login' component={Login} />
-				<Stack.Screen name='Quote' component={QuoteTab} />
+				<Stack.Screen name='BottomNavigation' component={BottomNavigation} />
 				<Stack.Screen name='ViewQuote' component={ViewQuote} />
 				<Stack.Screen name='BuyingScreen' component={BuyingScreen} />
 				<Stack.Screen name='CoopScreen' component={CoopScreen} />

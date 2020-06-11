@@ -13,7 +13,7 @@ const Login = ({ navigation }) => {
 			loginButtonBackgroundColor='#282828'
 			source={require('../../img/wheat3.jpeg')}
 			switchValue={switchValue}
-			onPressLogin={() => navigation.navigate('Quote')}
+			onPressLogin={() => navigation.navigate('BottomNavigation')}
 			usernameOnChangeText={(username) => setUsername(username)}
 			passwordOnChangeText={(password) => console.log('Password: ', password)}
 			onSwitchValueChange={(switchValue) => {
