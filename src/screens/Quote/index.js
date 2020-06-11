@@ -12,10 +12,11 @@ import CelsiusHeader from '../../components/common/CelsiusHeader'
 import PickerContainer from '../../components/common/PickerContainer'
 import CelsiusInput from '../../components/common/CelsiusInput'
 import ViewCalculatePremium from '../../screens/ViewQuote'
+import Crop from '../../components/common/Crop'
 
 const Quote = ({ navigation }) => {
 	const [selectedProvince, setSelectedProvince] = useState('key0')
-	const [selectedCrop, setSelectedCrop] = useState('key0')
+	const [selectedCrop, setSelectedCrop] = useState(undefined)
 	const [selectedSeason, setSelectedSeason] = useState('key0')
 	const [isModalVisible, setIsModalVisible] = useState(false)
 	const avgYield = '4200'
@@ -47,22 +48,7 @@ const Quote = ({ navigation }) => {
 							<Picker.Item label='Glarus' value='Glarus' />
 						</Picker>
 					</PickerContainer>
-					<PickerContainer>
-						<Picker
-							mode='dropdown'
-							iosIcon={<Icon name='arrow-down' />}
-							style={{ width: undefined }}
-							selectedValue={selectedCrop}
-							onValueChange={(value) => {
-								setSelectedCrop(value)
-							}}
-						>
-							<Picker.Item label='Crop' value='key0' />
-							<Picker.Item label='Crop1' value='key1' />
-							<Picker.Item label='Crop2' value='key2' />
-							<Picker.Item label='Crop3' value='key3' />
-						</Picker>
-					</PickerContainer>
+					<Crop onValueChange={(value) => setSelectedCrop(value)}></Crop>
 					<PickerContainer>
 						<Picker
 							mode='dropdown'
@@ -108,7 +94,7 @@ const Quote = ({ navigation }) => {
 						style={{ marginTop: 15 }}
 						onPress={() => setIsModalVisible(true)}
 						disabled={
-							selectedCrop == 'key0' ||
+							selectedCrop == undefined ||
 							selectedSeason == 'key0' ||
 							selectedProvince == 'key0' ||
 							insuranceArea.toString().trim() == ''
