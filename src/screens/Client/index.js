@@ -1,20 +1,15 @@
-import React, { useEffect, useState } from 'react'
 import {
-	Text,
+	Button,
 	Container,
 	Content,
-	List,
-	ListItem,
-	Left,
-	Body,
-	Right,
-	Thumbnail,
-	Button,
 	Header,
-	Item,
 	Icon,
 	Input,
+	Item,
+	List,
+	Text,
 } from 'native-base'
+import React, { useEffect, useState } from 'react'
 import ClientComponent from '../../components/common/Client'
 import { getAllClients } from '../../redux/actions/client'
 const Client = ({ navigation }) => {

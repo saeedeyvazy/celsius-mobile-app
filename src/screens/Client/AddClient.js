@@ -42,7 +42,7 @@ const AddClient = ({ navigation }) => {
 					{ text: 'OK' },
 			  ])
 	}
-	const [tradingName, setTradingName] = useState('')
+	const [chanelPartner, setChannelPartner] = useState('')
 	const [Vatnumber, setVatNumber] = useState('')
 	const [regNumber, setRegNumber] = useState('')
 	const [title, setTitle] = useState('')
@@ -72,8 +72,8 @@ const AddClient = ({ navigation }) => {
 				>
 					<CelsiusInput
 						label='Channel partner'
-						onChangeText={(value) => setTradingName(value)}
-						value={tradingName}
+						onChangeText={(value) => setChannelPartner(value)}
+						value={chanelPartner}
 					></CelsiusInput>
 					<CelsiusInput
 						label='Registeration number'

@@ -14,20 +14,9 @@ import {
 import React from 'react'
 import { Alert } from 'react-native'
 import CelsiusHeader from '../../components/common/CelsiusHeader'
+import { clientDetailInfoMap } from '../../utility/apiResponseMap'
 
 const AddViewClient = ({ navigation, route }) => {
-	const {
-		firstName,
-		lastName,
-		registrationNumber,
-		vatNumber,
-		title,
-		initials,
-		dateOfBirth,
-		occupation,
-		idNumber,
-	} = route.params.clientDetailInfo
-
 	const confirm = () => {
 		Alert.alert(
 			'Client Saved',
@@ -42,86 +31,20 @@ const AddViewClient = ({ navigation, route }) => {
 			<CelsiusHeader></CelsiusHeader>
 			<Content>
 				<List>
-					<ListItem first>
-						<Left>
-							<Text style={{ color: '#00008b' }}>Trading name</Text>
-						</Left>
-						<Body>
-							<Input placeholder='trading name'></Input>
-						</Body>
-					</ListItem>
-					<ListItem>
-						<Left>
-							<Text style={{ color: '#00008b' }}>Register number</Text>
-						</Left>
-						<Body>
-							<Input>{registrationNumber}</Input>
-						</Body>
-					</ListItem>
-					<ListItem>
-						<Left>
-							<Text style={{ color: '#00008b' }}>Vat number</Text>
-						</Left>
-						<Body>
-							<Input> {vatNumber}</Input>
-						</Body>
-					</ListItem>
-					<ListItem>
-						<Left>
-							<Text style={{ color: '#00008b' }}>Title</Text>
-						</Left>
-						<Body>
-							<Input>{title}</Input>
-						</Body>
-					</ListItem>
-					<ListItem>
-						<Left>
-							<Text style={{ color: '#00008b' }}>Initials</Text>
-						</Left>
-						<Body>
-							<Input>{initials}</Input>
-						</Body>
-					</ListItem>
-					<ListItem>
-						<Left>
-							<Text style={{ color: '#00008b' }}>First name</Text>
-						</Left>
-						<Body>
-							<Input>{firstName}</Input>
-						</Body>
-					</ListItem>
-					<ListItem>
-						<Left>
-							<Text style={{ color: '#00008b' }}>Last name</Text>
-						</Left>
-						<Body>
-							<Input>{lastName}</Input>
-						</Body>
-					</ListItem>
-					<ListItem>
-						<Left>
-							<Text style={{ color: '#00008b' }}>In no.</Text>
-						</Left>
-						<Body>
-							<Input>{idNumber}</Input>
-						</Body>
-					</ListItem>
-					<ListItem>
-						<Left>
-							<Text style={{ color: '#00008b' }}>Date of birth</Text>
-						</Left>
-						<Body>
-							<Input>{dateOfBirth.split('T')[0]}</Input>
-						</Body>
-					</ListItem>
-					<ListItem>
-						<Left>
-							<Text style={{ color: '#00008b' }}>Occupation</Text>
-						</Left>
-						<Body>
-							<Input>{occupation}</Input>
-						</Body>
-					</ListItem>
+					{Object.keys(route.params.clientDetailInfo).map((key) => (
+						<ListItem>
+							<Left>
+								<Text style={{ color: '#00008b' }}>
+									{clientDetailInfoMap[key]}
+								</Text>
+							</Left>
+							<Body>
+								<Input editable={false}>
+									{route.params.clientDetailInfo[key]}
+								</Input>
+							</Body>
+						</ListItem>
+					))}
 				</List>
 			</Content>
 			<View>

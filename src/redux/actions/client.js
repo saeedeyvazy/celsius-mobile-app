@@ -14,9 +14,18 @@ export const getAllClients = async () => {
 			vatNumber: client.VatNumber,
 			title: client.Title,
 			initials: client.Initials,
-			dateOfBirth: client.DateOfBirth,
+			dateOfBirth: client.DateOfBirth.split('T')[0],
 			occupation: client.Occupation,
 			idNumber: client.IdNumber,
+			channelPartner: client.ChannelPartner,
+			email: client.Email,
+			district: client.District,
+			ethnicGroup: client.EthnicGroup,
+			contractMethod: client.ContractMethod,
+			mobile: client.Mobile,
+			physAddress: client.PhysAddress,
+			postalCode: client.PostalCode,
+			mobileMoney: client.MobileMoneyNumber,
 		}))
 	} catch (error) {
 		console.log(error)
