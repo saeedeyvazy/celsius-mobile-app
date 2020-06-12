@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import {
 	Text,
 	Container,
@@ -15,11 +15,22 @@ import {
 	Icon,
 	Input,
 } from 'native-base'
-
+import ClientComponent from '../../components/common/Client'
+import { getAllClients } from '../../redux/actions/client'
 const Client = ({ navigation }) => {
+	const [clientList, setClientList] = useState([])
+
 	const navigateToViewClient = () => {
 		navigation.navigate('AddViewClientScreen')
 	}
+
+	useEffect(() => {
+		const fetchAllClient = async () => {
+			const response = await getAllClients()
+			setClientList(response)
+		}
+		fetchAllClient()
+	}, [])
 
 	return (
 		<Container>
@@ -38,108 +49,17 @@ const Client = ({ navigation }) => {
 			</Header>
 			<Content>
 				<List>
-					<ListItem thumbnail>
-						<Left>
-							<Thumbnail circular source={require('../../img/no-avatar.png')} />
-						</Left>
-						<Body>
-							<Text>Behnam safari</Text>
-							<Text note numberOfLines={1}>
-								Lucerne
-							</Text>
-						</Body>
-						<Right>
-							<Text note>confirmed</Text>
-							<Button transparent onPress={() => navigateToViewClient()}>
-								<Text>View</Text>
-							</Button>
-						</Right>
-					</ListItem>
-					<ListItem thumbnail>
-						<Left>
-							<Thumbnail circular source={require('../../img/avatar1.jpg')} />
-						</Left>
-						<Body>
-							<Text>Saeed Evyazy</Text>
-							<Text note numberOfLines={1}>
-								Basel
-							</Text>
-						</Body>
-						<Right>
-							<Text note>registered</Text>
-							<Button transparent onPress={() => navigateToViewClient()}>
-								<Text>View</Text>
-							</Button>
-						</Right>
-					</ListItem>
-					<ListItem thumbnail>
-						<Left>
-							<Thumbnail circular source={require('../../img/avatar2.jpg')} />
-						</Left>
-						<Body>
-							<Text>Mahsa Daemi</Text>
-							<Text note numberOfLines={1}>
-								Geneva
-							</Text>
-						</Body>
-						<Right>
-							<Text note>confirmed</Text>
-							<Button transparent onPress={() => navigateToViewClient()}>
-								<Text>View</Text>
-							</Button>
-						</Right>
-					</ListItem>
-					<ListItem thumbnail>
-						<Left>
-							<Thumbnail circular source={require('../../img/avatar4.jpeg')} />
-						</Left>
-						<Body>
-							<Text>Ali Bandari</Text>
-							<Text note numberOfLines={1}>
-								Bern
-							</Text>
-						</Body>
-						<Right>
-							<Text note>unknown</Text>
-							<Button transparent onPress={() => navigateToViewClient()}>
-								<Text>View</Text>
-							</Button>
-						</Right>
-					</ListItem>
-					<ListItem thumbnail>
-						<Left>
-							<Thumbnail circular source={require('../../img/no-avatar.png')} />
-						</Left>
-						<Body>
-							<Text>David Simon</Text>
-							<Text note numberOfLines={1}>
-								Zurich
-							</Text>
-						</Body>
-						<Right>
-							<Text note>confirmed</Text>
-							<Button transparent onPress={() => navigateToViewClient()}>
-								<Text>View</Text>
-							</Button>
-						</Right>
-					</ListItem>
-					<ListItem thumbnail>
-						<Left>
-							<Thumbnail circular source={require('../../img/avatar5.jpeg')} />
-						</Left>
-						<Body>
-							<Text>Luca Ahmadi</Text>
-							<Text note numberOfLines={1}>
-								Zurich
-							</Text>
-						</Body>
-						<Right>
-							<Text note>unknown</Text>
-							<Button transparent onPress={() => navigateToViewClient()}>
-								<Text>View</Text>
-							</Button>
-						</Right>
-					</ListItem>
+					{clientList.map((client) => {
+						const { firstName, lastName, city, province } = client
+						return (
+							<ClientComponent
+								firstName={firstName}
+								lastName={lastName}
+								city={city}
+								province={province}
+							></ClientComponent>
+						)
+					})}
 				</List>
 			</Content>
 		</Container>
