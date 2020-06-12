@@ -18,6 +18,7 @@ import PickerContainer from '../../components/common/PickerContainer'
 import { isNullOrEmpty } from '../../utility/string'
 import Province from '../../components/common/Province'
 import Gender from '../../components/common/Gender'
+import District from '../../components/common/District'
 
 const AddClient = ({ navigation }) => {
 	const isFillAllRequiredField = () => {
@@ -51,8 +52,8 @@ const AddClient = ({ navigation }) => {
 	const [occupation, setOccupation] = useState('')
 	const [birthDate, setBirthDate] = useState('')
 	const [email, setEmail] = useState('')
-	const [selectedProvince, setSelectedProvince] = useState('key0')
-	const [selectedDistrict, setSelectedDistrict] = useState('key0')
+	const [selectedProvince, setSelectedProvince] = useState('')
+	const [selectedDistrict, setSelectedDistrict] = useState('')
 	const [ethnicGroup, setEthnicGroup] = useState('')
 	const [contactMethod, setContactMethod] = useState('')
 	const [mobile, setMobile] = useState('')
@@ -127,28 +128,12 @@ const AddClient = ({ navigation }) => {
 							<Icon name='star' style={{ fontSize: 9, color: 'red' }}></Icon>
 						</Label>
 					</Province>
-					<PickerContainer>
+					<District onValueChange={(value) => setSelectedDistrict(value)}>
 						<Label style={{ fontSize: 14, marginLeft: 10, marginTop: 14 }}>
 							District
 							<Icon name='star' style={{ fontSize: 9, color: 'red' }}></Icon>
 						</Label>
-						<Picker
-							mode='dropdown'
-							iosIcon={<Icon name='arrow-down' />}
-							style={{
-								width: undefined,
-								fontSize: 14,
-							}}
-							selectedValue={selectedDistrict}
-							onValueChange={(value) => setSelectedDistrict(value)}
-							placeholder='province'
-						>
-							<Picker.Item label='District 1' value='District 1' />
-							<Picker.Item label='District 2' value='District 2' />
-							<Picker.Item label='District 3' value='District 3' />
-							<Picker.Item label='District 4' value='District 4' />
-						</Picker>
-					</PickerContainer>
+					</District>
 
 					<Calendar
 						required
@@ -167,7 +152,7 @@ const AddClient = ({ navigation }) => {
 						value={ethnicGroup}
 					></CelsiusInput>
 					<CelsiusInput
-						label='Ethnic group'
+						label='Contact method'
 						onChangeText={(value) => setContactMethod(value)}
 						value={contactMethod}
 					></CelsiusInput>

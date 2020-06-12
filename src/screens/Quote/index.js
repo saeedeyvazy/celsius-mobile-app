@@ -26,6 +26,7 @@ const Quote = ({ navigation }) => {
 				>
 					<Province
 						onValueChange={(value) => setSelectedProvince(value)}
+						hasPlaceholder
 					></Province>
 					<Crop onValueChange={(value) => setSelectedCrop(value)}></Crop>
 					<Season onValueChange={(value) => setSelectedSeason(value)}></Season>

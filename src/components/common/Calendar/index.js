@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import style from './style'
 import { Item, Label, Icon, DatePicker } from 'native-base'
 
