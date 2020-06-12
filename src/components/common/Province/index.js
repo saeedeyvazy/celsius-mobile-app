@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { getAllProvince } from '../../../redux/actions/province'
 import PickerContainer from '../PickerContainer'
 
-export default Province = ({ onValueChange }) => {
+export default Province = ({ onValueChange, children }) => {
 	const [provinceList, setProvinceList] = useState([])
 	const [selectedProvince, setSelectedProvince] = useState('')
 
@@ -17,6 +17,7 @@ export default Province = ({ onValueChange }) => {
 
 	return (
 		<PickerContainer>
+			{children}
 			<Picker
 				mode='dropdown'
 				iosIcon={<Icon name='arrow-down' />}

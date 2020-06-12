@@ -15,6 +15,7 @@ import CelsiusHeader from '../../components/common/CelsiusHeader'
 import CelsiusInput from '../../components/common/CelsiusInput'
 import PickerContainer from '../../components/common/PickerContainer'
 import { isNullOrEmpty } from '../../utility/string'
+import Province from '../../components/common/Province'
 
 const AddClient = ({ navigation }) => {
 	const isFillAllRequiredField = () => {
@@ -104,30 +105,12 @@ const AddClient = ({ navigation }) => {
 						value={email}
 						placeholder='example@gmail.com'
 					></CelsiusInput>
-					<PickerContainer>
+					<Province onValueChange={(value) => setSelectedProvince(value)}>
 						<Label style={{ fontSize: 14, marginLeft: 10, marginTop: 14 }}>
 							Province
 							<Icon name='star' style={{ fontSize: 9, color: 'red' }}></Icon>
 						</Label>
-						<Picker
-							mode='dropdown'
-							iosIcon={<Icon name='arrow-down' />}
-							style={{
-								width: undefined,
-								fontSize: 14,
-							}}
-							selectedValue={selectedProvince}
-							onValueChange={(value) => setSelectedProvince(value)}
-							placeholder='province'
-						>
-							<Picker.Item label='Zurich' value='Zurich' />
-							<Picker.Item label='Bern' value='Bern' />
-							<Picker.Item label='Uri' value='Uri' />
-							<Picker.Item label='Schwyz' value='Schwyz' />
-							<Picker.Item label='Unterwalden' value='Unterwalden' />
-							<Picker.Item label='Glarus' value='Glarus' />
-						</Picker>
-					</PickerContainer>
+					</Province>
 					<PickerContainer>
 						<Label style={{ fontSize: 14, marginLeft: 10, marginTop: 14 }}>
 							District
