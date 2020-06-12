@@ -4,43 +4,65 @@ import {
 	Content,
 	Form,
 	Icon,
-	Picker,
+	Label,
 	Text,
 	View,
-	Label,
 } from 'native-base'
 import React, { useState } from 'react'
-import { Alert } from 'react-native'
-import CelsiusHeader from '../../components/common/CelsiusHeader'
 import Calendar from '../../components/common/Calendar'
+import CelsiusHeader from '../../components/common/CelsiusHeader'
 import CelsiusInput from '../../components/common/CelsiusInput'
-import PickerContainer from '../../components/common/PickerContainer'
-import { isNullOrEmpty } from '../../utility/string'
-import Province from '../../components/common/Province'
-import Gender from '../../components/common/Gender'
 import District from '../../components/common/District'
+import Gender from '../../components/common/Gender'
+import Province from '../../components/common/Province'
+import { isNullOrEmpty } from '../../utility/string'
+import AwesomeAlert from 'react-native-awesome-alerts'
 
 const AddClient = ({ navigation }) => {
 	const isFillAllRequiredField = () => {
 		const isFillFirstName = !isNullOrEmpty(firstName)
 		const isFillLastName = !isNullOrEmpty(lastName)
-		const isFillEmail = !isNullOrEmpty(email)
+		const isFillMobileMoney = !isNullOrEmpty(mobileMoney)
 		const isFillProvince = !isNullOrEmpty(selectedProvince)
+		const isFillDistrict = !isNullOrEmpty(selectedDistrict)
+		const isFillBirthDate = !isNullOrEmpty(birthDate)
+		const isFillIdNumber = !isNullOrEmpty(idNumber)
+		const isFillTitle = !isNullOrEmpty(title)
+		const isFillMobile = !isNullOrEmpty(mobile)
+		const isPhysAddress = !isNullOrEmpty(physAddress)
 
-		return isFillEmail && isFillFirstName && isFillLastName && isFillProvince
+		return (
+			isFillFirstName &&
+			isFillLastName &&
+			isFillProvince &&
+			isFillDistrict &&
+			isFillBirthDate &&
+			isFillIdNumber &&
+			isFillTitle &&
+			isFillMobile &&
+			isFillMobileMoney &&
+			isPhysAddress
+		)
 	}
 
 	const confirm = () => {
-		isFillAllRequiredField()
-			? Alert.alert(
-					'Client Saved',
-					'Confirmed!',
-					[{ text: 'OK', onPress: () => navigation.navigate('Client') }],
-					{ cancelable: false }
-			  )
-			: Alert.alert('Missed Information', 'Please fill all mandatory fieldds', [
-					{ text: 'OK' },
-			  ])
+		if (isFillAllRequiredField()) {
+			setRequiredFieldAlertShow(false)
+			setSaveClientAlertShow(true)
+		} else {
+			setSaveClientAlertShow(false)
+			setRequiredFieldAlertShow(true)
+		}
+
+		// ? Alert.alert(
+		// 		'Client Saved',
+		// 		'Confirmed!',
+		// 		[{ text: 'OK', onPress: () => navigation.navigate('Client') }],
+		// 		{ cancelable: false }
+		//   )
+		// : Alert.alert('Missed Information', 'Please fill all mandatory fieldds', [
+		// 		{ text: 'OK' },
+		//   ])
 	}
 	const [chanelPartner, setChannelPartner] = useState('')
 	const [Vatnumber, setVatNumber] = useState('')
@@ -61,6 +83,9 @@ const AddClient = ({ navigation }) => {
 	const [city, setCity] = useState('')
 	const [postalCode, setPostalCode] = useState('')
 	const [mobileMoney, setMobileMoney] = useState('')
+	const [idNumber, setIdNumber] = useState('')
+	const [saveClientAlertShow, setSaveClientAlertShow] = useState(false)
+	const [requiredFieldAlertShow, setRequiredFieldAlertShow] = useState(false)
 	return (
 		<Container>
 			<CelsiusHeader></CelsiusHeader>
@@ -112,8 +137,8 @@ const AddClient = ({ navigation }) => {
 					<CelsiusInput
 						required
 						label='Id number'
-						onChangeText={(value) => setLastName(value)}
-						value={lastName}
+						onChangeText={(value) => setIdNumber(value)}
+						value={idNumber}
 						keyboardType='numeric'
 					></CelsiusInput>
 					<CelsiusInput
@@ -164,7 +189,7 @@ const AddClient = ({ navigation }) => {
 					></CelsiusInput>
 					<CelsiusInput
 						required
-						label='PhysAddress'
+						label='Physical Address'
 						onChangeText={(value) => setPhysAddress(value)}
 						value={physAddress}
 					></CelsiusInput>
@@ -213,6 +238,32 @@ const AddClient = ({ navigation }) => {
 					<Text>Delete</Text>
 				</Button>
 			</View>
+			<AwesomeAlert
+				show={saveClientAlertShow}
+				showProgress={false}
+				title='Add Client'
+				message='Are you sure to save client?'
+				closeOnTouchOutside={true}
+				closeOnHardwareBackPress={true}
+				showCancelButton={true}
+				showConfirmButton={true}
+				cancelText='No, cancel'
+				confirmText='Yes, save it'
+				confirmButtonColor='#DD6B55'
+				onCancelPressed={() => setSaveClientAlertShow(false)}
+			/>
+			<AwesomeAlert
+				show={requiredFieldAlertShow}
+				showProgress={false}
+				title='Required Fields'
+				message='Please fill all manatory fields!'
+				closeOnTouchOutside={true}
+				closeOnHardwareBackPress={true}
+				showConfirmButton={true}
+				confirmText='      OK        '
+				confirmButtonColor='#DD6B55'
+				onConfirmPressed={() => setRequiredFieldAlertShow(false)}
+			/>
 		</Container>
 	)
 }
