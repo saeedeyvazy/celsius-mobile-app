@@ -20,8 +20,10 @@ import { getAllClients } from '../../redux/actions/client'
 const Client = ({ navigation }) => {
 	const [clientList, setClientList] = useState([])
 
-	const navigateToViewClient = () => {
-		navigation.navigate('AddViewClientScreen')
+	const navigateToViewClient = (client) => {
+		navigation.navigate('AddViewClientScreen', {
+			clientDetailInfo: client,
+		})
 	}
 
 	useEffect(() => {
@@ -57,6 +59,7 @@ const Client = ({ navigation }) => {
 								lastName={lastName}
 								city={city}
 								province={province}
+								navigateToViewClient={() => navigateToViewClient(client)}
 							></ClientComponent>
 						)
 					})}

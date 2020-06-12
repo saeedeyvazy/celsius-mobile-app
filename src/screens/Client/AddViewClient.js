@@ -1,21 +1,33 @@
-import React from 'react'
 import {
+	Body,
+	Button,
 	Container,
 	Content,
+	Icon,
+	Input,
+	Left,
 	List,
 	ListItem,
 	Text,
-	Body,
-	Left,
-	Input,
 	View,
-	Button,
-	Icon,
 } from 'native-base'
-import CelsiusHeader from '../../components/common/CelsiusHeader'
+import React from 'react'
 import { Alert } from 'react-native'
+import CelsiusHeader from '../../components/common/CelsiusHeader'
 
-const AddViewClient = ({ navigation }) => {
+const AddViewClient = ({ navigation, route }) => {
+	const {
+		firstName,
+		lastName,
+		registrationNumber,
+		vatNumber,
+		title,
+		initials,
+		dateOfBirth,
+		occupation,
+		idNumber,
+	} = route.params.clientDetailInfo
+
 	const confirm = () => {
 		Alert.alert(
 			'Client Saved',
@@ -43,7 +55,7 @@ const AddViewClient = ({ navigation }) => {
 							<Text style={{ color: '#00008b' }}>Register number</Text>
 						</Left>
 						<Body>
-							<Input placeholder='890123737'></Input>
+							<Input>{registrationNumber}</Input>
 						</Body>
 					</ListItem>
 					<ListItem>
@@ -51,7 +63,7 @@ const AddViewClient = ({ navigation }) => {
 							<Text style={{ color: '#00008b' }}>Vat number</Text>
 						</Left>
 						<Body>
-							<Input placeholder='65483939'></Input>
+							<Input> {vatNumber}</Input>
 						</Body>
 					</ListItem>
 					<ListItem>
@@ -59,7 +71,7 @@ const AddViewClient = ({ navigation }) => {
 							<Text style={{ color: '#00008b' }}>Title</Text>
 						</Left>
 						<Body>
-							<Input placeholder='insurance title'></Input>
+							<Input>{title}</Input>
 						</Body>
 					</ListItem>
 					<ListItem>
@@ -67,7 +79,7 @@ const AddViewClient = ({ navigation }) => {
 							<Text style={{ color: '#00008b' }}>Initials</Text>
 						</Left>
 						<Body>
-							<Input placeholder='insurance initials'></Input>
+							<Input>{initials}</Input>
 						</Body>
 					</ListItem>
 					<ListItem>
@@ -75,7 +87,7 @@ const AddViewClient = ({ navigation }) => {
 							<Text style={{ color: '#00008b' }}>First name</Text>
 						</Left>
 						<Body>
-							<Input placeholder='Luca'></Input>
+							<Input>{firstName}</Input>
 						</Body>
 					</ListItem>
 					<ListItem>
@@ -83,7 +95,7 @@ const AddViewClient = ({ navigation }) => {
 							<Text style={{ color: '#00008b' }}>Last name</Text>
 						</Left>
 						<Body>
-							<Input placeholder='Simon'></Input>
+							<Input>{lastName}</Input>
 						</Body>
 					</ListItem>
 					<ListItem>
@@ -91,7 +103,7 @@ const AddViewClient = ({ navigation }) => {
 							<Text style={{ color: '#00008b' }}>In no.</Text>
 						</Left>
 						<Body>
-							<Input placeholder='45374858'></Input>
+							<Input>{idNumber}</Input>
 						</Body>
 					</ListItem>
 					<ListItem>
@@ -99,7 +111,7 @@ const AddViewClient = ({ navigation }) => {
 							<Text style={{ color: '#00008b' }}>Date of birth</Text>
 						</Left>
 						<Body>
-							<Input placeholder='1991/01/19'></Input>
+							<Input>{dateOfBirth.split('T')[0]}</Input>
 						</Body>
 					</ListItem>
 					<ListItem>
@@ -107,7 +119,7 @@ const AddViewClient = ({ navigation }) => {
 							<Text style={{ color: '#00008b' }}>Occupation</Text>
 						</Left>
 						<Body>
-							<Input placeholder='occupation'></Input>
+							<Input>{occupation}</Input>
 						</Body>
 					</ListItem>
 				</List>

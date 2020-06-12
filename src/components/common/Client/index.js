@@ -9,7 +9,14 @@ import {
 	Button,
 } from 'native-base'
 
-export default Client = ({ firstName, lastName, status, city, province }) => {
+export default Client = ({
+	firstName,
+	lastName,
+	status,
+	city,
+	province,
+	navigateToViewClient,
+}) => {
 	return (
 		<ListItem thumbnail>
 			<Left>
@@ -22,7 +29,8 @@ export default Client = ({ firstName, lastName, status, city, province }) => {
 				</Text>
 			</Body>
 			<Right>
-				<Text note>{status}</Text>
+				{/* TODO: change confirmed to status that recieved from api */}
+				<Text note> confirmed </Text>
 				<Button transparent onPress={() => navigateToViewClient()}>
 					<Text>View</Text>
 				</Button>

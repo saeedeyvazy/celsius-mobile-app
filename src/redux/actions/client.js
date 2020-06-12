@@ -10,6 +10,13 @@ export const getAllClients = async () => {
 			lastName: client.LastName,
 			province: client.Province,
 			city: client.City,
+			registrationNumber: client.RegistrationNumber,
+			vatNumber: client.VatNumber,
+			title: client.Title,
+			initials: client.Initials,
+			dateOfBirth: client.DateOfBirth,
+			occupation: client.Occupation,
+			idNumber: client.IdNumber,
 		}))
 	} catch (error) {
 		console.log(error)
