@@ -13,10 +13,11 @@ import PickerContainer from '../../components/common/PickerContainer'
 import CelsiusInput from '../../components/common/CelsiusInput'
 import ViewCalculatePremium from '../../screens/ViewQuote'
 import Crop from '../../components/common/Crop'
+import Province from '../../components/common/Province'
 
 const Quote = ({ navigation }) => {
-	const [selectedProvince, setSelectedProvince] = useState('key0')
-	const [selectedCrop, setSelectedCrop] = useState(undefined)
+	const [selectedProvince, setSelectedProvince] = useState('')
+	const [selectedCrop, setSelectedCrop] = useState('')
 	const [selectedSeason, setSelectedSeason] = useState('key0')
 	const [isModalVisible, setIsModalVisible] = useState(false)
 	const avgYield = '4200'
@@ -31,23 +32,9 @@ const Quote = ({ navigation }) => {
 						alignItems: 'center',
 					}}
 				>
-					<PickerContainer>
-						<Picker
-							mode='dropdown'
-							iosIcon={<Icon name='arrow-down' />}
-							style={{ width: undefined }}
-							selectedValue={selectedProvince}
-							onValueChange={(value) => setSelectedProvince(value)}
-						>
-							<Picker.Item label='Name of province' value='key0' />
-							<Picker.Item label='Zurich' value='Zurich' />
-							<Picker.Item label='Bern' value='Bern' />
-							<Picker.Item label='Uri' value='Uri' />
-							<Picker.Item label='Schwyz' value='Schwyz' />
-							<Picker.Item label='Unterwalden' value='Unterwalden' />
-							<Picker.Item label='Glarus' value='Glarus' />
-						</Picker>
-					</PickerContainer>
+					<Province
+						onValueChange={(value) => setSelectedProvince(value)}
+					></Province>
 					<Crop onValueChange={(value) => setSelectedCrop(value)}></Crop>
 					<PickerContainer>
 						<Picker
@@ -94,9 +81,9 @@ const Quote = ({ navigation }) => {
 						style={{ marginTop: 15 }}
 						onPress={() => setIsModalVisible(true)}
 						disabled={
-							selectedCrop == undefined ||
+							selectedCrop == '' ||
 							selectedSeason == 'key0' ||
-							selectedProvince == 'key0' ||
+							selectedProvince == '' ||
 							insuranceArea.toString().trim() == ''
 						}
 					>

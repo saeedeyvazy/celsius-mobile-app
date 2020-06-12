@@ -27,6 +27,8 @@ export default Crop = ({ onValueChange }) => {
 					onValueChange(value)
 				}}
 			>
+				<Picker.Item label='Name of Crop' value='' />
+
 				{cropList.map((item) => (
 					<Picker.Item label={item.CropName} value={item.CropId} />
 				))}
