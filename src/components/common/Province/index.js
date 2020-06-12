@@ -30,7 +30,7 @@ export default Province = ({ onValueChange }) => {
 				<Picker.Item label='Name of province' value='' />
 
 				{provinceList.map((province) => (
-					<Picker.Item label={province} />
+					<Picker.Item label={province} value={province} />
 				))}
 			</Picker>
 		</PickerContainer>
