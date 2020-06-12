@@ -12,10 +12,12 @@ import {
 import React, { useState } from 'react'
 import { Alert } from 'react-native'
 import CelsiusHeader from '../../components/common/CelsiusHeader'
+import Calendar from '../../components/common/Calendar'
 import CelsiusInput from '../../components/common/CelsiusInput'
 import PickerContainer from '../../components/common/PickerContainer'
 import { isNullOrEmpty } from '../../utility/string'
 import Province from '../../components/common/Province'
+import Gender from '../../components/common/Gender'
 
 const AddClient = ({ navigation }) => {
 	const isFillAllRequiredField = () => {
@@ -48,10 +50,16 @@ const AddClient = ({ navigation }) => {
 	const [lastName, setLastName] = useState('')
 	const [occupation, setOccupation] = useState('')
 	const [birthDate, setBirthDate] = useState('')
-	const [inNo, setInNo] = useState('')
 	const [email, setEmail] = useState('')
 	const [selectedProvince, setSelectedProvince] = useState('key0')
 	const [selectedDistrict, setSelectedDistrict] = useState('key0')
+	const [ethnicGroup, setEthnicGroup] = useState('')
+	const [contactMethod, setContactMethod] = useState('')
+	const [mobile, setMobile] = useState('')
+	const [physAddress, setPhysAddress] = useState('')
+	const [city, setCity] = useState('')
+	const [postalCode, setPostalCode] = useState('')
+	const [mobileMoney, setMobileMoney] = useState('')
 	return (
 		<Container>
 			<CelsiusHeader></CelsiusHeader>
@@ -62,22 +70,24 @@ const AddClient = ({ navigation }) => {
 					}}
 				>
 					<CelsiusInput
-						label='Trading name'
+						label='Channel partner'
 						onChangeText={(value) => setTradingName(value)}
 						value={tradingName}
 					></CelsiusInput>
 					<CelsiusInput
-						label='Register number'
+						label='Registeration number'
 						onChangeText={(value) => setRegNumber(value)}
 						value={regNumber}
+						keyboardType='numeric'
 					></CelsiusInput>
 					<CelsiusInput
-						label='Vatnumber'
+						label='VAT number'
 						onChangeText={(value) => setVatNumber(value)}
 						value={Vatnumber}
 					></CelsiusInput>
 					<CelsiusInput
 						label='Title'
+						required
 						onChangeText={(value) => setTitle(value)}
 						value={title}
 					></CelsiusInput>
@@ -94,12 +104,18 @@ const AddClient = ({ navigation }) => {
 					></CelsiusInput>
 					<CelsiusInput
 						required
-						label='last name'
+						label='Last name'
 						onChangeText={(value) => setLastName(value)}
 						value={lastName}
 					></CelsiusInput>
 					<CelsiusInput
 						required
+						label='Id number'
+						onChangeText={(value) => setLastName(value)}
+						value={lastName}
+						keyboardType='numeric'
+					></CelsiusInput>
+					<CelsiusInput
 						label='Email'
 						onChangeText={(value) => setEmail(value)}
 						value={email}
@@ -133,20 +149,57 @@ const AddClient = ({ navigation }) => {
 							<Picker.Item label='District 4' value='District 4' />
 						</Picker>
 					</PickerContainer>
-					<CelsiusInput
-						label='In no.'
-						onChangeText={(value) => setInNo(value)}
-						value={inNo}
-					></CelsiusInput>
-					<CelsiusInput
-						label='Date of Birth'
-						onChangeText={(value) => setBirthDate(value)}
-						value={birthDate}
-					></CelsiusInput>
+
+					<Calendar
+						required
+						label='Birth date'
+						onValueChange={(value) => setBirthDate(value)}
+					></Calendar>
 					<CelsiusInput
 						label='Occupation'
 						onChangeText={(value) => setOccupation(value)}
 						value={occupation}
+					></CelsiusInput>
+					<Gender></Gender>
+					<CelsiusInput
+						label='Ethnic group'
+						onChangeText={(value) => setEthnicGroup(value)}
+						value={ethnicGroup}
+					></CelsiusInput>
+					<CelsiusInput
+						label='Ethnic group'
+						onChangeText={(value) => setContactMethod(value)}
+						value={contactMethod}
+					></CelsiusInput>
+					<CelsiusInput
+						required
+						label='Mobile number'
+						onChangeText={(value) => setMobile(value)}
+						value={mobile}
+					></CelsiusInput>
+					<CelsiusInput
+						required
+						label='PhysAddress'
+						onChangeText={(value) => setPhysAddress(value)}
+						value={physAddress}
+					></CelsiusInput>
+					<CelsiusInput
+						label='City'
+						onChangeText={(value) => setCity(value)}
+						value={city}
+					></CelsiusInput>
+					<CelsiusInput
+						label='Postal code'
+						onChangeText={(value) => setPostalCode(value)}
+						value={postalCode}
+						keyboardType='numeric'
+					></CelsiusInput>
+					<CelsiusInput
+						required
+						label='Mobile money number'
+						onChangeText={(value) => setMobileMoney(value)}
+						value={mobileMoney}
+						keyboardType='numeric'
 					></CelsiusInput>
 				</Form>
 			</Content>
