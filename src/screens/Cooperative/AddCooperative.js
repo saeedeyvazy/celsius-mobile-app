@@ -75,7 +75,7 @@ const AddCooperative = ({ navigation }) => {
 				</List>
 				<List>
 					<ListItem itemDivider>
-						<Text>Memebers</Text>
+						<Text>Members</Text>
 					</ListItem>
 					<Left></Left>
 					<Button

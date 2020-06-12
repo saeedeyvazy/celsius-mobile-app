@@ -31,6 +31,9 @@ const AddViewClient = ({ navigation, route }) => {
 			<CelsiusHeader></CelsiusHeader>
 			<Content>
 				<List>
+					<ListItem itemDivider>
+						<Text>Client Details Information</Text>
+					</ListItem>
 					{Object.keys(route.params.clientDetailInfo).map((key) => (
 						<ListItem>
 							<Left>
@@ -39,7 +42,7 @@ const AddViewClient = ({ navigation, route }) => {
 								</Text>
 							</Left>
 							<Body>
-								<Input editable={false}>
+								<Input editable={false} style={{ fontSize: 13 }}>
 									{route.params.clientDetailInfo[key]}
 								</Input>
 							</Body>
@@ -48,19 +51,6 @@ const AddViewClient = ({ navigation, route }) => {
 				</List>
 			</Content>
 			<View>
-				<Button iconLeft full dark onPress={() => confirm()}>
-					<Icon type='Octicons' name='check'></Icon>
-					<Text>Save</Text>
-				</Button>
-				<Button
-					iconLeft
-					full
-					warning
-					onPress={() => navigation.navigate('Client')}
-				>
-					<Icon name='trash'></Icon>
-					<Text>Cancel</Text>
-				</Button>
 				<Button
 					rounded
 					full
@@ -68,7 +58,7 @@ const AddViewClient = ({ navigation, route }) => {
 					danger
 					onPress={() => navigation.navigate('Client')}
 				>
-					<Icon name='cross' type='Entypo'></Icon>
+					<Icon name='trash' type='Entypo'></Icon>
 					<Text>Delete</Text>
 				</Button>
 			</View>
