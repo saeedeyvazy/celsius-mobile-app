@@ -17,14 +17,15 @@ import Gender from '../../components/common/Gender'
 import Province from '../../components/common/Province'
 import { isNullOrEmpty } from '../../utility/string'
 import AwesomeAlert from 'react-native-awesome-alerts'
+import { addClient } from '../../redux/actions/client'
 
 const AddClient = ({ navigation }) => {
 	const isFillAllRequiredField = () => {
 		const isFillFirstName = !isNullOrEmpty(firstName)
 		const isFillLastName = !isNullOrEmpty(lastName)
 		const isFillMobileMoney = !isNullOrEmpty(mobileMoney)
-		const isFillProvince = !isNullOrEmpty(selectedProvince)
-		const isFillDistrict = !isNullOrEmpty(selectedDistrict)
+		const isFillProvince = !isNullOrEmpty(province)
+		const isFillDistrict = !isNullOrEmpty(district)
 		const isFillBirthDate = !isNullOrEmpty(birthDate)
 		const isFillIdNumber = !isNullOrEmpty(idNumber)
 		const isFillTitle = !isNullOrEmpty(title)
@@ -53,16 +54,6 @@ const AddClient = ({ navigation }) => {
 			setSaveClientAlertShow(false)
 			setRequiredFieldAlertShow(true)
 		}
-
-		// ? Alert.alert(
-		// 		'Client Saved',
-		// 		'Confirmed!',
-		// 		[{ text: 'OK', onPress: () => navigation.navigate('Client') }],
-		// 		{ cancelable: false }
-		//   )
-		// : Alert.alert('Missed Information', 'Please fill all mandatory fieldds', [
-		// 		{ text: 'OK' },
-		//   ])
 	}
 	const [chanelPartner, setChannelPartner] = useState('')
 	const [Vatnumber, setVatNumber] = useState('')
@@ -74,8 +65,8 @@ const AddClient = ({ navigation }) => {
 	const [occupation, setOccupation] = useState('')
 	const [birthDate, setBirthDate] = useState('')
 	const [email, setEmail] = useState('')
-	const [selectedProvince, setSelectedProvince] = useState('')
-	const [selectedDistrict, setSelectedDistrict] = useState('')
+	const [province, setProvince] = useState('')
+	const [district, setDistrict] = useState('')
 	const [ethnicGroup, setEthnicGroup] = useState('')
 	const [contactMethod, setContactMethod] = useState('')
 	const [mobile, setMobile] = useState('')
@@ -86,6 +77,33 @@ const AddClient = ({ navigation }) => {
 	const [idNumber, setIdNumber] = useState('')
 	const [saveClientAlertShow, setSaveClientAlertShow] = useState(false)
 	const [requiredFieldAlertShow, setRequiredFieldAlertShow] = useState(false)
+
+	const save = async () => {
+		setSaveClientAlertShow(false)
+		await addClient({
+			chanelPartner,
+			Vatnumber,
+			regNumber,
+			title,
+			init,
+			firstName,
+			lastName,
+			occupation,
+			birthDate,
+			email,
+			province,
+			district,
+			ethnicGroup,
+			contactMethod,
+			mobile,
+			physAddress,
+			city,
+			postalCode,
+			mobileMoney,
+			idNumber,
+		})
+	}
+
 	return (
 		<Container>
 			<CelsiusHeader></CelsiusHeader>
@@ -119,7 +137,7 @@ const AddClient = ({ navigation }) => {
 					></CelsiusInput>
 					<CelsiusInput
 						label='Initials'
-						onChangeText={() => setInit(value)}
+						onChangeText={(value) => setInit(value)}
 						value={init}
 					></CelsiusInput>
 					<CelsiusInput
@@ -147,13 +165,13 @@ const AddClient = ({ navigation }) => {
 						value={email}
 						placeholder='example@gmail.com'
 					></CelsiusInput>
-					<Province onValueChange={(value) => setSelectedProvince(value)}>
+					<Province onValueChange={(value) => setProvince(value)}>
 						<Label style={{ fontSize: 14, marginLeft: 10, marginTop: 14 }}>
 							Province
 							<Icon name='star' style={{ fontSize: 9, color: 'red' }}></Icon>
 						</Label>
 					</Province>
-					<District onValueChange={(value) => setSelectedDistrict(value)}>
+					<District onValueChange={(value) => setDistrict(value)}>
 						<Label style={{ fontSize: 14, marginLeft: 10, marginTop: 14 }}>
 							District
 							<Icon name='star' style={{ fontSize: 9, color: 'red' }}></Icon>
@@ -251,6 +269,7 @@ const AddClient = ({ navigation }) => {
 				confirmText='Yes, save it'
 				confirmButtonColor='#DD6B55'
 				onCancelPressed={() => setSaveClientAlertShow(false)}
+				onConfirmPressed={() => save()}
 			/>
 			<AwesomeAlert
 				show={requiredFieldAlertShow}

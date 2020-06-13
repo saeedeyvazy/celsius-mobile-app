@@ -24,7 +24,7 @@ export default Calendar = ({ label, required, onValueChange }) => {
 				textStyle={{ color: 'green' }}
 				placeHolderTextStyle={{ color: '#d3d3d3' }}
 				onDateChange={(value) => {
-					onValueChange(value)
+					onValueChange(value.toString().substr(4, 12))
 				}}
 				disabled={false}
 			/>

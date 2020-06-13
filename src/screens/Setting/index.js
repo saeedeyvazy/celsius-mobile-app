@@ -30,6 +30,7 @@ const Setting = ({ route, navigation }) => {
 	const syncWithServer = async () => {
 		const connected = await isNetworkAvailable()
 		if (!connected) setShowCheckConnectionAlert(true)
+		if (!isLoggedIn) setIsVisibleLoginModal(true)
 	}
 	return (
 		<>

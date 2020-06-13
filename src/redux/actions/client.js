@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { clientUrl } from '../../utility/api'
 import { config } from '../../utility/axiosConfig'
+import { AsyncStorage } from 'react-native'
 export const getAllClients = async () => {
 	try {
 		const response = await axios.get(clientUrl, config)
@@ -31,4 +32,16 @@ export const getAllClients = async () => {
 		console.log(error)
 		return []
 	}
+}
+
+export const addClient = async (client) => {
+	let oldClientList = await AsyncStorage.getItem('clients')
+
+	if (oldClientList == null)
+		await AsyncStorage.setItem('clients', JSON.stringify([client]))
+	else
+		await AsyncStorage.setItem(
+			'clients',
+			JSON.stringify([...JSON.parse(oldClientList), client])
+		)
 }
