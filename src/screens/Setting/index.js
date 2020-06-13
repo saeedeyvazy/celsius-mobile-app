@@ -1,20 +1,19 @@
-import React, { useState, useEffect } from 'react'
 import {
-	Text,
+	Body,
+	Button,
 	Container,
 	Content,
+	Icon,
+	Left,
 	List,
 	ListItem,
-	Left,
-	Button,
-	Body,
-	Icon,
+	Text,
 } from 'native-base'
-import CelsiusHeader from '../../components/common/CelsiusHeader'
-import SyncServerModal from './SyncServerModal'
+import React, { useState } from 'react'
 import Modal from 'react-native-modal'
-import LoginScreen from 'react-native-login-screen'
+import CelsiusHeader from '../../components/common/CelsiusHeader'
 import CelsiusInput from '../../components/common/CelsiusInput'
+import SyncServerModal from './SyncServerModal'
 
 const Setting = ({ route, navigation }) => {
 	const [isVisibleModal, setIsVisibleModal] = useState(false)
