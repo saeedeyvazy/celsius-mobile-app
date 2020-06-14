@@ -12,7 +12,7 @@ export const clientDetailInfoMap = {
 	channelPartner: 'Channel partner',
 	email: 'Email',
 	district: 'District',
-	province: 'Prvince',
+	province: 'Province',
 	ethnicGroup: 'Ethnic group',
 	contractMethod: 'Contract method',
 	mobile: 'Mobile',

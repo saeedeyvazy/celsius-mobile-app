@@ -55,7 +55,7 @@ const AddClient = ({ navigation }) => {
 			setRequiredFieldAlertShow(true)
 		}
 	}
-	const [chanelPartner, setChannelPartner] = useState('')
+	const [channelPartner, setChannelPartner] = useState('')
 	const [Vatnumber, setVatNumber] = useState('')
 	const [regNumber, setRegNumber] = useState('')
 	const [title, setTitle] = useState('')
@@ -81,9 +81,9 @@ const AddClient = ({ navigation }) => {
 	const save = async () => {
 		setSaveClientAlertShow(false)
 		await addClient({
-			chanelPartner,
+			channelPartner,
 			Vatnumber,
-			regNumber,
+			registrationNumber: regNumber,
 			title,
 			init,
 			firstName,
@@ -95,12 +95,13 @@ const AddClient = ({ navigation }) => {
 			district,
 			ethnicGroup,
 			contactMethod,
-			mobile,
+			mobileNumber: mobile,
 			physAddress,
 			city,
 			postalCode,
 			mobileMoney,
 			idNumber,
+			regionId: 3,
 		})
 	}
 
@@ -116,7 +117,7 @@ const AddClient = ({ navigation }) => {
 					<CelsiusInput
 						label='Channel partner'
 						onChangeText={(value) => setChannelPartner(value)}
-						value={chanelPartner}
+						value={channelPartner}
 					></CelsiusInput>
 					<CelsiusInput
 						label='Registeration number'

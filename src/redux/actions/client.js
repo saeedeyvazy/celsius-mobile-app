@@ -35,13 +35,20 @@ export const getAllClients = async () => {
 }
 
 export const addClient = async (client) => {
-	let oldClientList = await AsyncStorage.getItem('clients')
+	let oldClientList = await AsyncStorage.getItem('@clients:localAdded')
 
 	if (oldClientList == null)
-		await AsyncStorage.setItem('clients', JSON.stringify([client]))
-	else
+		await AsyncStorage.setItem('@clients:localAdded', JSON.stringify(client))
+	else {
+		oldClientList = [JSON.parse(oldClientList)]
 		await AsyncStorage.setItem(
-			'clients',
-			JSON.stringify([...JSON.parse(oldClientList), client])
+			'@clients:localAdded',
+			JSON.stringify([...oldClientList, client])
 		)
+	}
+}
+
+export const getAllLocalClient = async () => {
+	const localAddedClientList = await AsyncStorage.getItem('@clients:localAdded')
+	return JSON.parse(localAddedClientList)
 }

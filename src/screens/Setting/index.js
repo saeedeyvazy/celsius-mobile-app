@@ -16,6 +16,7 @@ import CelsiusInput from '../../components/common/CelsiusInput'
 import SyncServerModal from './SyncServerModal'
 import { isNetworkAvailable } from '../../utility/network'
 import AwesomeAlert from 'react-native-awesome-alerts'
+import { sync } from '../../redux/actions/sync'
 
 const Setting = ({ route, navigation }) => {
 	const [isVisibleModal, setIsVisibleModal] = useState(false)
@@ -31,6 +32,8 @@ const Setting = ({ route, navigation }) => {
 		const connected = await isNetworkAvailable()
 		if (!connected) setShowCheckConnectionAlert(true)
 		if (!isLoggedIn) setIsVisibleLoginModal(true)
+
+		if (connected && isLoggedIn) await sync()
 	}
 	return (
 		<>
