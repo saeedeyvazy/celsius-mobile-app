@@ -17,6 +17,7 @@ import SyncServerModal from './SyncServerModal'
 import { isNetworkAvailable } from '../../utility/network'
 import AwesomeAlert from 'react-native-awesome-alerts'
 import { sync } from '../../redux/actions/sync'
+import Spinner from 'react-native-loading-spinner-overlay'
 
 const Setting = ({ route, navigation }) => {
 	const [isVisibleModal, setIsVisibleModal] = useState(false)
@@ -27,13 +28,17 @@ const Setting = ({ route, navigation }) => {
 	)
 	const [username, setUsername] = useState('')
 	const [password, setPassword] = useState('')
+	const [showSpinner, setShowSpinner] = useState(false)
 
 	const syncWithServer = async () => {
 		const connected = await isNetworkAvailable()
 		if (!connected) setShowCheckConnectionAlert(true)
 		if (!isLoggedIn) setIsVisibleLoginModal(true)
-
-		if (connected && isLoggedIn) await sync()
+		if (connected && isLoggedIn) {
+			setShowSpinner(true)
+			await sync()
+			setTimeout(() => setShowSpinner(false), 3000)
+		}
 	}
 	return (
 		<>
@@ -75,11 +80,12 @@ const Setting = ({ route, navigation }) => {
 						</ListItem>
 					</List>
 				</Content>
-				<SyncServerModal
+				{/* <SyncServerModal
 					isVisible={isVisibleModal}
 					close={() => setIsVisibleModal(false)}
-				></SyncServerModal>
+				></SyncServerModal> */}
 			</Container>
+			<Spinner visible={showSpinner} textContent='syncing...'></Spinner>
 			<AwesomeAlert
 				show={showCheckConnectionAlert}
 				showProgress={false}
@@ -92,6 +98,7 @@ const Setting = ({ route, navigation }) => {
 				confirmButtonColor='#DD6B55'
 				onConfirmPressed={() => setShowCheckConnectionAlert(false)}
 			/>
+
 			<Modal
 				isVisible={isVisibleloginModal}
 				animationInTiming={600}
