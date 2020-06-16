@@ -29,7 +29,7 @@ const Cooperative = ({ navigation }) => {
 					<Input placeholder='Search' />
 					<Icon
 						name='ios-add'
-						onPress={() => navigation.navigate('AddClientScreen')}
+						onPress={() => navigation.navigate('AddCoopScreen')}
 					/>
 				</Item>
 				<Button transparent>

@@ -11,7 +11,7 @@ import {
 } from 'native-base'
 import React, { useEffect, useState } from 'react'
 import ClientComponent from '../../components/common/Client'
-import { getAllClients } from '../../redux/actions/client'
+import { getAllLocalClient } from '../../redux/actions/client'
 const Client = ({ navigation }) => {
 	const [clientList, setClientList] = useState([])
 
@@ -23,7 +23,7 @@ const Client = ({ navigation }) => {
 
 	useEffect(() => {
 		const fetchAllClient = async () => {
-			const response = await getAllClients()
+			const response = await getAllLocalClient()
 			setClientList(response)
 		}
 		fetchAllClient()

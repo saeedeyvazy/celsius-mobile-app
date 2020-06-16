@@ -45,7 +45,7 @@ const ViewQuote = ({
 					<List>
 						<ListItem noIndent>
 							<Left>
-								<Text>Premium</Text>
+								<Text>Premium(ZMW)</Text>
 							</Left>
 							<Body>
 								<Input
@@ -57,7 +57,7 @@ const ViewQuote = ({
 						</ListItem>
 						<ListItem first>
 							<Left>
-								<Text>Sum Insured</Text>
+								<Text>Sum Insured(ZMW)</Text>
 							</Left>
 							<Body>
 								<Input

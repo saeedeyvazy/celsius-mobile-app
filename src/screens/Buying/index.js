@@ -36,7 +36,7 @@ const Buying = ({ navigation, route }) => {
 					editable={false}
 				></CelsiusInput>
 				<CelsiusInput
-					label='Premium'
+					label='Premium(ZMW)'
 					value={route.params.premium}
 					editable={false}
 				></CelsiusInput>
@@ -46,7 +46,7 @@ const Buying = ({ navigation, route }) => {
 					editable={false}
 				></CelsiusInput>
 				<CelsiusInput
-					label='Premium date'
+					label='Premium(ZMW) date'
 					editable={false}
 					value={premiumDate}
 				></CelsiusInput>

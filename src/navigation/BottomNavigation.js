@@ -61,12 +61,12 @@ export function BottomNavigation() {
 				}}
 			/>
 			<Tab.Screen
-				name='Setting'
+				name='Sync'
 				component={SettingScreen}
 				options={{
 					tabBarIcon: ({ focused, color }) => (
 						<Icon
-							name='settings'
+							name='sync'
 							size={25}
 							color={focused ? 'black' : color}
 						></Icon>

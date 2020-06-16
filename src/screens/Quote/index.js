@@ -46,12 +46,12 @@ const Quote = ({ navigation }) => {
 					></CelsiusInput>
 					<CelsiusInput
 						value={(insuranceArea * avgYield).toString()}
-						label='Sum Insured(2MW)'
+						label='Sum Insured(ZMW)'
 						keyboardType='numeric'
 						editable={false}
 					></CelsiusInput>
 					<CelsiusInput
-						label='Deductible'
+						label='Deductible(ZMW)'
 						editable={false}
 						value={(insuranceArea * avgYield * 0.1).toString()}
 					></CelsiusInput>
@@ -68,7 +68,7 @@ const Quote = ({ navigation }) => {
 							insuranceArea.toString().trim() == ''
 						}
 					>
-						<Text>Calculate Premium</Text>
+						<Text>Calculate Premium(ZMW)</Text>
 					</Button>
 					<ViewCalculatePremium
 						isVisible={isModalVisible}

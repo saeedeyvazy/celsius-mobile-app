@@ -29,6 +29,7 @@ const Setting = ({ route, navigation }) => {
 	const [username, setUsername] = useState('')
 	const [password, setPassword] = useState('')
 	const [showSpinner, setShowSpinner] = useState(false)
+	const [showSyncSuccessfully, setShowSyncSuccessfully] = useState(false)
 
 	const syncWithServer = async () => {
 		const connected = await isNetworkAvailable()
@@ -37,7 +38,8 @@ const Setting = ({ route, navigation }) => {
 		if (connected && isLoggedIn) {
 			setShowSpinner(true)
 			await sync()
-			setTimeout(() => setShowSpinner(false), 3000)
+			setShowSpinner(false)
+			setTimeout(() => setShowSyncSuccessfully(true), 1500)
 		}
 	}
 	return (
@@ -97,8 +99,21 @@ const Setting = ({ route, navigation }) => {
 				confirmText='    OK    '
 				confirmButtonColor='#DD6B55'
 				onConfirmPressed={() => setShowCheckConnectionAlert(false)}
+				messageStyle={{ textAlign: 'center' }}
 			/>
-
+			<AwesomeAlert
+				show={showSyncSuccessfully}
+				showProgress={false}
+				title='Sync'
+				message='Sync with server was successfully!'
+				closeOnTouchOutside={true}
+				closeOnHardwareBackPress={true}
+				showConfirmButton={true}
+				confirmText='   OK   '
+				confirmButtonColor='#DD6B55'
+				onConfirmPressed={() => setShowSyncSuccessfully(false)}
+				messageStyle={{ textAlign: 'center' }}
+			/>
 			<Modal
 				isVisible={isVisibleloginModal}
 				animationInTiming={600}
@@ -126,7 +141,6 @@ const Setting = ({ route, navigation }) => {
 							onPress={() => {
 								setIsVisibleLoginModal(false)
 								setIsLoggedIn(true)
-								setIsVisibleModal(true)
 							}}
 						>
 							<Text>Login</Text>

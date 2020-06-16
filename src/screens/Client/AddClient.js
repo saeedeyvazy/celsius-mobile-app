@@ -271,6 +271,7 @@ const AddClient = ({ navigation }) => {
 				confirmButtonColor='#DD6B55'
 				onCancelPressed={() => setSaveClientAlertShow(false)}
 				onConfirmPressed={() => save()}
+				messageStyle={{ textAlign: 'center' }}
 			/>
 			<AwesomeAlert
 				show={requiredFieldAlertShow}
@@ -283,6 +284,7 @@ const AddClient = ({ navigation }) => {
 				confirmText='      OK        '
 				confirmButtonColor='#DD6B55'
 				onConfirmPressed={() => setRequiredFieldAlertShow(false)}
+				messageStyle={{ textAlign: 'center' }}
 			/>
 		</Container>
 	)
